@@ -1,0 +1,27 @@
+#container main {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+#container section {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 1%;
+}
+
+#container section div{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+#container .basic-quests div{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
