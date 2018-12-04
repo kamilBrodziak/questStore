@@ -1,0 +1,30 @@
+
+html, body {
+    margin: 0; 
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    height: 90%;
+    border: 5px solid red;
+}
+
+nav {
+    height: 10%;
+    border: 5px solid black;
+
+}
+
