@@ -1,0 +1,56 @@
+nav, #navOptions {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    height: 10%;
+}
+
+#navOptions {
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+#navOptions li {
+    border-top: 1px groove rgb(255, 252, 242);
+    border-right: 6px groove rgb(255, 252, 242);
+    border-bottom: 4px groove rgb(255, 252, 242);
+    box-sizing: border-box;
+    width: 20%;
+    height: 100%;
+    background-image: url("../images/rsz_menu.jpg");
+    text-align: center;
+    padding-top: 1%;
+    transition: all 0.4s ease;
+}
+
+#navOptions li:last-child:hover {
+    margin-top: 0px;
+}
+
+#navOptions li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 300%;
+    text-decoration: none;
+    color: rgb(255, 252, 242);
+}
+
+#navOptions li:hover {
+    margin-top: -10px;
+}
+
+
+#navOptions li a.disabled {
+    pointer-events: none;
+    cursor: default;
+
+}
+

@@ -1,5 +1,5 @@
 
-html, body {
+html, body, main, #container {
     margin: 0; 
     padding: 0;
 }
@@ -22,10 +22,3 @@ main {
     height: 90%;
     border: 5px solid red;
 }
-
-nav {
-    height: 10%;
-    border: 5px solid black;
-
-}
-
