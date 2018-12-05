@@ -18,19 +18,45 @@
             <main id="login">
                 <article id="welcomePage">
                     <h1>Welcome traveller!</h1>
-                    
                 </article>
-                
+                <div id="loginSection">
+                    <button id="loginButton">Already a fighter</button>
+                    <div id="loginCase">
+                        <form action="#">
+                            Email*
+                            <input id="loginEmail" type="email" placeholder="example@email.com">
+                            Password*
+                            <input type="password" maxlength="32">
+                            <input type="submit" value="Login">
+                        </form>
+                    </div>
+                    <button id="registerButton">Join our team</button>
+                    <div id="registerCase">
+                        <form action="#">
+                            First Name*
+                            <input type="text" placeholder="John">
+                            Last Name*
+                            <input type="text" placeholder="Bohn">
+                            Email*
+                            <input id="registerEmail" type="email" placeholder="example@email.com">
+                            Password*
+                            <input type="password" maxlength="32">
+                            <input type="submit" value="Register">
+                        </form>
+                    </div>
+                </div>
+
             </main>
             <nav>
                 <ul id="navOptions">
-                    <li><a href="#">Main</a></li>
+                    <li><a href="login.html">Main</a></li>
                     <li class="disabled"><a href="#">Account</a></li>
                     <li class="disabled"><a href="#">Quests</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li></li>
                 </ul>
             </nav>
         </div>
+        <script src="scripts/login.js"></script>
     </body>
 </html>

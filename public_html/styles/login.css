@@ -22,5 +22,103 @@ body {
 
 #welcomePage h1 {
     text-align: center;
+    font-size: 2vw;
+}
+
+#loginSection {
+    width: 70%;
+    height: 100%;
+}
+
+#loginSection button {
+    position: absolute;
+    width: 14%;
+    height: 8%;
+    bottom: 12%;
+    left: 30%;
+    margin-left: -2%;
+    background-color: rgb(255, 252, 242, 0.8);
+    border: 4px groove rgb(135, 118, 110);
+    border-bottom: 10px groove rgb(135, 118, 110);
+    border-right: 6px groove rgb(135, 118, 110);
+    outline: none;
     font-size: 200%;
+}
+
+#loginSection button:first-of-type {
+    left: 50%;
+}
+
+#loginSection button:hover {
+    background-color: rgb(255, 252, 242, 1);
+    cursor: pointer;
+}
+
+#loginSection button:active, .activated {
+    border-bottom: 4px groove rgb(135, 118, 110) !important;
+    border-right: 4px groove rgb(135, 118, 110) !important;
+    bottom: 11% !important;
+}
+
+#loginCase {
+    display: none;
+    position: absolute;
+    right: 11%;
+    top: 5%;
+    width: 30%;
+    height: 71%;
+    border: 4px groove rgb(135, 118, 110);
+    background-color: rgb(255, 252, 242, 0.9);
+}
+
+#registerCase {
+    display: none;
+    position: absolute;
+    right: 11%;
+    top: 5%;
+    width: 30%;
+    height: 71%;
+    border: 4px groove rgb(135, 118, 110);
+    background-color: rgb(255, 252, 242, 0.9);
+}
+
+
+form {
+    font-size: 2vw;
+    width: 70%;
+    height: 60%;
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+form input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 20%;
+    border: 4px groove rgb(135, 118, 110);
+    font-size: 1.8vw;
+}
+
+form input[type="submit"] {
+    margin-top: 10%;
+    background-image: url("../images/rsz_menu.jpg");
+    opacity: 0.9;
+    color: rgb(255, 252, 242);
+    border-bottom: 10px groove rgb(255, 252, 242);
+    border-right: 8px groove rgb(255, 252, 242);
+}
+
+form input[type="submit"]:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+form input[type="submit"]:active {
+    margin-top: 12%;
+    border-radius: 120px;
+    border-bottom: 4px groove rgb(255, 252, 242);
+    border-right: 4px groove rgb(255, 252, 242);
+}
+.invalidOutput {
+    color: red;
 }
