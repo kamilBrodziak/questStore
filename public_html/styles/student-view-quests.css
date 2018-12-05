@@ -35,3 +35,73 @@ body {
 h1{
     background: linear-gradient(160deg, rgba(0,0,0,1) 4%, rgba(0,0,0,0.542454481792717) 26%, rgba(0,0,0,0) 58%);
 }
+
+.figure-long{
+    position: relative;
+    width: 400px;
+    height: 120px;
+    font-size: 30px;
+}
+
+.figure-long .button-long {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.figure-long .button-long-round {
+    position: absolute;
+    top: 0;
+    left: 300px;
+}
+
+.figure-long span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding: 31px;
+}
+
+.figure-long i {
+    position: absolute;
+    top: 0;
+    left: 300px;
+    display: block;
+    padding: 33px;
+}
+
+.figure-short{
+    position: relative;
+    width: 250px;
+    height: 70px;
+    font-size: 20px;
+}
+
+.figure-short .button-long {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.figure-short .button-long-round {
+    position: absolute;
+    top: 0;
+    left: 182px;
+}
+
+.figure-short span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding: 20px;
+}
+
+.figure-short i {
+    position: absolute;
+    top: 0;
+    left: 182px;
+    display: block;
+    padding: 20px;
+}
