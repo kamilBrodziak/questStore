@@ -23,27 +23,27 @@ h1
 {
 	color: black;
 	font-weight: 500;
-	font-size: 60px;
-	margin-left: 0.83em;
+	font-size: 3vw;
+	margin-left: 15%;
 	line-height: 120%;
 }
 input[type="text"]
 {
-	padding: 10px;
-	width: 350px;
+	padding: 3%;
+	width: 85%;
 	box-sizing: border-box;
 	border-radius: 25px;
-	font-size: 18px;
+	font-size: 1vw;
 }
 input[type="submit"]
 {
 	box-sizing: : border-box;
-	width: 350px;
-	padding: 20px;
+	width: 85%;
+	padding: 4%;
 	border-radius: 25px;
 	background-color: #6d4b14;
 	color: black;
-	font-size: 34px;
+	font-size: 2.2vw;
 	border: 2px solid #4c2f02;
 }
 input[type="submit"]:hover
@@ -54,17 +54,16 @@ input[type="submit"]:hover
 textarea
 {
 	box-sizing: border-box;
-	width: 350px;
-	height: 190px;
+	width: 85%;
 	border-radius: 25px;
 	resize: none;
-	font-size: 18px;
+	font-size: 1vw;
 }
 #form
 {
-	margin-left: 3.5em;
+	margin-left: 12%;
 }
 label
 {
-	font-size: 25px;
+	font-size: 1.5vw;
 }
