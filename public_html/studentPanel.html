@@ -10,20 +10,31 @@
         <link rel="stylesheet" type="text/css" href="styles/main.css">
         <link rel="stylesheet" type="text/css" href="styles/navigation.css">
         <link rel="stylesheet" type="text/css" href="styles/studentPanel.css">
-
+        <script src="scripts/cookies.js"></script>
     </head>
     <body>
         <div id="container">
-            <main>
-                
-            </main>
+            <div id="main">
+                <article id="leftPart">
+                    <h1>STORE</h1>
+                </article>
+                <div id="rightPart">
+                    <div id="stat">
+                        <div id="coins"></div>
+                        <div id="lvl"></div>
+                    </div>
+                    <div id="coinsTotal"></div>
+                    <div id="achievUnlocked"></div>
+                    <div id="quest"></div>
+                </div>
+            </div>
             <nav>
                 <ul id="navOptions">
-                    <li><a href="#">Main</a></li>
-                    <li><a href="#">Account</a></li>
-                    <li><a href="#">Quests</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li></li>
+                    <li><a id="main_anchor" href="index.html">Main</a></li>
+                    <li><a id="account_anchor" href="#">Account</a></li>
+                    <li><a id="quests_anchor" href="#">Quests</a></li>
+                    <li><a id="contact_anchor" href="contact.html">Contact</a></li>
+                    <li><a id="logout_anchor" href="index.html" onclick="return logout()">Logout</a></li>
                 </ul>
             </nav>
         </div>
