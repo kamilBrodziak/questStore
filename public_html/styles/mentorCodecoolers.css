@@ -1,0 +1,78 @@
+section
+{
+	width: 70%;
+	height: 70%;
+	background-color: #e0b764;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8%;
+	opacity: 0.85;
+	border-radius: 50px;
+}
+section h1
+{
+	color: black;
+	font-weight: 500;
+	font-size: 3vw;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+article ul > li:nth-child(2)
+{
+	color: red;
+}
+#form
+{
+	margin-left: 33.5%;
+}
+input[type="text"]
+{
+	width: 40%;
+	font-size: 1.25vw;
+	box-sizing: border-box;
+	border-radius: 25px;
+}
+label
+{
+	font-size: 1.75vw;
+}
+input[type="radio"]
+{
+	margin-top: 3%;
+	padding: 0;
+	margin: 0;
+}
+.radioClass
+{
+	font-size: 1vw;
+}
+input[type="submit"]
+{
+	width: 40%;
+	font-size: 1.85vw;
+	margin-bottom: 2.5%;
+	margin-top: 7%;
+	box-sizing: border-box;
+	border-radius: 25px;
+	background-color: #d64646;
+	color: black;
+	border: 2px solid #680808;
+}
+input[type="submit"] ~ input[type="submit"]
+{
+	margin-top: 2.5%;
+	font-size: 1.85vw;
+	border-radius: 25px;
+	background-color: #4ed867;
+	color: black;
+	border: 2px solid #02440e;
+}
+input[type="submit"]:hover
+{
+	background-color: #841a1a;
+}
+input[type="submit"] ~ input[type="submit"]:hover
+{
+	background-color: #18822b;
+}
