@@ -1,0 +1,70 @@
+main
+{
+	height: 90%;
+	background-image: url("../images/contact.jpg");
+	background-size: 100% 100%;
+}
+section
+{
+	width: 25%;
+	height: 80%;
+	background-color: #f2cb8c;
+	opacity: 0.85;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10%;
+	margin-top: 5em;
+	color: black;
+	-webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.61);
+	-moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.61);
+	box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.61);
+}
+h1
+{
+	color: black;
+	font-weight: 500;
+	font-size: 60px;
+	margin-left: 0.83em;
+	line-height: 120%;
+}
+input[type="text"]
+{
+	padding: 10px;
+	width: 350px;
+	box-sizing: border-box;
+	border-radius: 25px;
+	font-size: 18px;
+}
+input[type="submit"]
+{
+	box-sizing: : border-box;
+	width: 350px;
+	padding: 20px;
+	border-radius: 25px;
+	background-color: #6d4b14;
+	color: black;
+	font-size: 34px;
+	border: 2px solid #4c2f02;
+}
+input[type="submit"]:hover
+{
+	cursor: pointer;
+	background-color: #684000;
+}
+textarea
+{
+	box-sizing: border-box;
+	width: 350px;
+	height: 190px;
+	border-radius: 25px;
+	resize: none;
+	font-size: 18px;
+}
+#form
+{
+	margin-left: 3.5em;
+}
+label
+{
+	font-size: 25px;
+}
