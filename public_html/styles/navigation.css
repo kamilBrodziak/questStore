@@ -48,9 +48,12 @@ nav {
 }
 
 
-#navOptions li a.disabled {
+#navOptions li.disabled a {
     pointer-events: none;
-    cursor: default;
+}
 
+#navOptions li.disabled:hover {
+    margin-top: 0px;
+    cursor: not-allowed;
 }
 
