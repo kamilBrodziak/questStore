@@ -73,7 +73,7 @@ function login() {
     var password = document.getElementById("loginPassword").value;
 
     if(validateLogin() && email === "student@cc.cc" && password === "123") {
-        setCookie("mainAnchor", "studentPanel.html", 0.01);
+        setCookie("accountAnchor", "studentPanel.html", 1);
         var form = document.getElementById("loginForm");
         form.setAttribute("action", "studentPanel.html");
         return true;

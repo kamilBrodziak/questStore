@@ -1,7 +1,8 @@
 window.onload = function() {
-    var mainPageAnchor = getCookie("mainAnchor");
-    if(mainPageAnchor !== "") {
-        document.getElementById("main_anchor").setAttribute("href", mainPageAnchor);
+    var accountAnchor = getCookie("accountAnchor");
+    if(accountAnchor !== "") {
+        document.getElementById("main_anchor").setAttribute("href", "menu.html");
+        document.getElementById("account_anchor").setAttribute("href", accountAnchor);
     } else {
         document.getElementById("account_anchor").parentElement.setAttribute("class", "disabled");
         document.getElementById("quests_anchor").parentElement.setAttribute("class", "disabled");

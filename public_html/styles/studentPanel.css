@@ -14,10 +14,43 @@ body {
 }
 
 #leftPart {
+    display: flex;
+    width: 36%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#store {
     box-sizing: border-box;
     background-color: rgb(255, 252, 242, 0.8);
     border: 14px groove rgb(135, 118, 110);
-    width: 36%;
+    width: 100%;
+    height: 80%;
+}
+
+#settings {
+    box-sizing: border-box;
+    height: 15%;
+    width: 100%;
+    background-image: url("../images/rsz_menu.jpg");
+    border: 4px groove rgb(255, 252, 242);
+    border-bottom: 14px groove rgb(255, 252, 242);
+    border-right: 14px groove rgb(255, 252, 242);
+    text-align: center;
+}
+
+#settings_anchor {
+    padding-top: 5%;
+    display: block;
+    text-decoration: none;
+    color: rgb(255, 252, 242);
+    font-size: 2vw;
+    width: 100%;
+    height: 90%;
+}
+
+#settings:hover > #settings_anchor {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 #rightPart {
