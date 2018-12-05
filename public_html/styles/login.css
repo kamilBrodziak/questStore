@@ -1,0 +1,26 @@
+
+body {
+    background-image: url("../images/login.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position-y: 90%;
+}
+
+#login {
+    display: flex;
+}
+
+#welcomePage {
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 30%;
+    height: 80%;
+    background-color: rgb(255, 252, 242, 0.9);
+    border: 4px groove rgb(135, 118, 110);
+}
+
+#welcomePage h1 {
+    text-align: center;
+    font-size: 200%;
+}
