@@ -19,28 +19,49 @@
                 <article>
                     <ul style="list-style-type: none;">
                         <li>MENU</li>
-                        <li>CODECOOLERS</li>
-                        <li>QUESTS</li>
-                        <li>STORE</li>
-                        <li>ACHIEVEMENT</li>
-                        <li>STATISTICS</li>
+                        <li><a href="../public_html/mentorCodecoolers.html">Codecoolers</a></li>
+                        <li><a href="../public_html/mentorQuests.html">Quests</a></li>
+                        <li><a href="../public_html/mentorStore.html">Store</a></li>
+                        <li><a href="../public_html/mentorAchievements.html">Achievements</a></li>
+                        <li><a href="../public_html/mentorStatistics.html">Statistics</a></li>
                     </ul>
                 </article>
 
                 <article id="articleSecond">
                     <section>
-                        <h1>Store</h1>
-                        <div id="divForm">
-                          <label>Add Artifact:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
-                          <input type="text" id="txtArtifact" /> <br /><br />
-                          <label>Set Price:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
-                          <input type="text" id="txtPrice" /> <br /><br />
-                          <label>Add Description:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
-                          <input type="text" id="txtDescription" /> <br /><br />
-                          <label>Add Category:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
-                          <input type="radio" name="categories" value="single" /><label class="labelRadio">Single</label> <br />
-                          <input type="radio" name="categories" value="team" /><label class="labelRadio">Team</label><br /><br />
-                          <input type="submit" value="ACCEPT" id="btnAccept" />
+                        <h1>Add Artifact</h1>
+                        <div id="centerDiv">
+                            <div class="leftInput">
+                              <label>Set Name:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                              <input type="text" id="txtArtifact" />
+                            </div>
+                          
+                            <div class="leftInput">
+                              <label>Set Price:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                              <input type="text" id="txtPrice" />
+                            </div>
+
+                           <div style="clear: both;"></div>
+
+                           <div id="container">
+                                <br />
+                               <label>Add Description:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                               <input type="text" id="txtDescription" />
+
+                               <br />
+                               <br />
+
+                               <label>Add Category:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                                <div id="radioButtons">
+                                    <br />
+                                    <input type="radio" name="categories" value="single" /><label class="labelRadio">Single</label>
+                                    <input type="radio" name="categories" value="team" /><label class="labelRadio">Team</label>
+
+                                    <div id="btnAccept">
+                                        <input type="submit" value="ACCEPT" id="btnAccept" /> 
+                                    </div>
+                                </div>
+                           </div>
                         </div>
                     </section>
                 </article>

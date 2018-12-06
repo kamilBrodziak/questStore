@@ -50,3 +50,8 @@ article ul > li:first-child:hover
 {
 	cursor: default;
 }
+ul > li a:link
+{
+	text-decoration: none;
+	color: white;
+}
