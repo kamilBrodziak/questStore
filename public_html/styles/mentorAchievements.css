@@ -1,0 +1,76 @@
+section
+{
+	width: 70%;
+	height: 40%;
+	background-color: #e0b764;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6%;
+	opacity: 0.85;
+	border-radius: 50px;
+	margin-top: 4%;
+}
+article ul > li:nth-child(5)
+{
+	color: red;
+}
+section h1
+{
+	text-align: center;
+	font-weight: 500;
+	font-size: 3vw;
+	margin: 0;
+	padding: 0;
+}
+ul > li a:link
+{
+	text-decoration: none;
+	color: white;
+}
+.post
+{
+	height: 15%;
+	width: 80%;
+	background-color: #916417;
+	border-radius: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2.25%;
+}
+.buttons
+{
+	float: left;
+	margin-left: 2%;
+
+}
+.info
+{
+	float: left;
+	text-align: right;
+	margin-left: 30%;
+	line-height: 200%;
+	font-weight: 700;
+	font-size: 1.1vw;
+}
+input[type="submit"]
+{
+	font-size: 0.85vw;
+	background-color: #5bd861;
+	color: black;
+	border: 2px solid #035907;
+	margin-top: 2%;
+	border-radius: 15px;	
+}
+input[type="submit"] ~ input[type="submit"]
+{
+	background-color: #db4141;
+	border: 2px solid #630404;
+}
+input[type="submit"]:hover
+{
+	background-color: #1b9131;
+}
+input[type="submit"] ~ input[type="submit"]:hover
+{
+	background-color: #9b1414;
+}
