@@ -1,0 +1,129 @@
+body {
+
+    background-image: url("../img/library.jpg");
+}
+
+#container main {
+    display: flex;
+    flex-direction: row;
+}
+
+#container main nav {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 3vw;
+    text-decoration: none;
+    color: rgb(255, 252, 242);
+    background-image: url("../images/mentorMenu.jpg");
+}
+
+#container main nav a {
+    display: block;
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#container main nav a.nav-header {
+    margin-top: 15%;
+    border-bottom: 2px solid rgb(255, 252, 242);
+}
+
+#container main nav a.active {
+    color: rgb(240, 80, 6);
+}
+
+
+#container main section {
+    width: 75%;
+    height: 100%;
+}
+
+.create-mentor {
+    display: flex;
+    width: 70%;
+    height: 50%;
+    margin: auto;
+    margin-top: 10%;
+    border-radius: 25px;
+    background-color: rgba(255, 252, 242, 0.877);
+    flex-direction: column;
+    align-content: center;
+    font-size: 1.5vw;
+    padding: 1%;
+}
+
+.create-mentor label {
+    width: 15%;
+    display: inline-block;
+    margin: 0.5%;
+}
+
+.create-mentor input {
+    width: 80%;
+    margin: 0.5%;
+}
+
+.create-mentor .mentor-create-submit{
+    padding-top: 0.5%;
+    display: block;
+    width: 10%;
+    
+}
+
+.mentor-list {
+    display: flex;
+    width: 70%;
+    height: 80%;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 25px;
+    background-color: rgba(255, 252, 242, 0.877);
+    align-content: flex-start;
+    font-size: 20px;
+    padding: 1%;
+    font-size: 1.5vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.mentor-list .the-mentor {
+    width: 25%;
+    height: 15%;
+    background-color: rgba(184, 95, 36, 0.801);
+    margin: 2%;
+    
+    border-radius: 25px;
+    padding: 1%;
+    
+}
+
+.mentor-list img {
+    width: 28%;
+    height: 60%;
+    float: left;
+}
+
+.mentor-list span {
+    display: inline-block;
+    background:  rgba(255, 252, 242, 0.877);
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+}
+.mentor-list .the-mentor div {
+    display: flex;
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-top: 3px;
+    justify-content: center;
+    /* align-content: center; */
+}
+
+.mentor-list h1 {
+    flex: 0 0 100%;
+}

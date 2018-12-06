@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    font-size: 18px;
+    font-size: 1vw;
     color: #bf9000; 
 }
 
@@ -29,9 +29,85 @@
 }
 
 body {
-    background-image: url("../img/wood-background.jpg");
+    background-image: url("../img/wood-stump.jpg");
 }
 
 h1{
     background: linear-gradient(160deg, rgba(0,0,0,1) 4%, rgba(0,0,0,0.542454481792717) 26%, rgba(0,0,0,0) 58%);
+}
+
+.figure-long{
+    position: relative;
+    width: 20vw;
+    height: 10vh;
+    font-size: 1.4vw;
+}
+
+.figure-long .button-long {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.figure-long .button-long-round {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.figure-long span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding: 10%;
+}
+
+.figure-long i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    padding: 9%;
+}
+
+.figure-short{
+    position: relative;
+    width: 15vw;
+    height: 7vh;
+    font-size: 1.2vw;
+}
+
+.figure-short .button-long {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.figure-short .button-long-round {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+
+.figure-short span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding: 9%;
+}
+
+.figure-short i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    padding: 8%;
 }

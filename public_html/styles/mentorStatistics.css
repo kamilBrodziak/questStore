@@ -1,0 +1,28 @@
+section
+{
+	width: 70%;
+	height: 80%;
+	background-color: #e0b764;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6%;
+	opacity: 0.85;
+	border-radius: 50px;
+}
+article ul > li:nth-child(6)
+{
+	color: red;
+}
+section h1
+{
+	text-align: center;
+	font-weight: 500;
+	font-size: 3vw;
+	margin: 0;
+	padding: 0;
+}
+ul > li a:link
+{
+	text-decoration: none;
+	color: white;
+}

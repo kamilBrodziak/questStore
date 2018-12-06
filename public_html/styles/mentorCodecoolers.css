@@ -81,3 +81,8 @@ input[type="submit"] ~ input[type="submit"]:hover
 {
 	background-color: #18822b;
 }
+ul > li a:link
+{
+	text-decoration: none;
+	color: white;
+}
