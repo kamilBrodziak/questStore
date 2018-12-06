@@ -1,0 +1,90 @@
+body {
+    background-image: url("../images/account.jpg");
+    background-size: 100%;
+    background-position-y: 50%;
+}
+
+
+#settings {
+    background-color: rgb(255, 252, 242);
+    border: 14px groove rgb(135, 118, 110);
+    width: 40%;
+    height: 80%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+h1 {
+    text-align: center;
+}
+
+#settings form {
+    box-sizing: border-box;
+    width: 60%;
+    font-size: 1.5vw;
+    margin: auto;
+
+}
+
+#settings form input {
+    width: 100%;
+    font-size: 1.2vw;
+    margin-bottom: 2%;
+}
+
+#settings form span {
+    float: right;
+    text-align: left;
+}
+
+#password {
+    width: 80% !important;
+}
+
+#checkPassword {
+    width: 15% !important;
+}
+
+
+#saveButton {
+    cursor: pointer;
+    outline: none;
+    margin-top: 10%;
+    font-size: 2vw !important;
+    color: rgb(255, 252, 242);
+    padding-top: 2%;
+    padding-bottom: 1%;
+    border: 10px groove rgb(255, 252, 242);
+    border-top: 4px groove rgb(255, 252, 242);
+    border-left: 4px groove rgb(255, 252, 242);
+    background-image: url("../images/rsz_menu.jpg")
+}
+
+#saveButton:hover {
+    opacity: 0.8;
+}
+
+#saveButton:active {
+    margin-top: 13%;
+    border: 4px groove rgb(255, 252, 242);
+}
+
+#backButton {
+    width: 20%;
+    height: 5%;
+    margin-left: 30%;
+    margin-top: 1%;
+    font-size: 1.2vw !important;
+    cursor: pointer;
+    background-image: url("../images/rsz_menu.jpg");
+    color: rgb(255, 252, 242);
+    border: 4px groove rgb(255, 252, 242);
+}
+
+#backButton:hover {
+    opacity: 0.8;
+}
+
+#backButton:active {
+    margin-top: 1.2%;
+}
