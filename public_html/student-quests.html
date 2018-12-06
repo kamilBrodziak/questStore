@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="styles/student-view-quests.css">
         <script src="scripts/cookies.js"></script>
     </head>
-    <body>
+    <body onload="changeActivePage(document.getElementById('navOptions').children[2])">
         <div id="container">
             <main>
                 <section class="main-quests">
@@ -91,5 +91,7 @@
                 </ul>
             </nav>
         </div>
+        <script src="scripts/navigation.js"></script>
+
     </body>
 </html>

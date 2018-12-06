@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="styles/login.css">
         <script src="scripts/cookies.js"></script>
     </head>
-    <body>
+    <body onload="changeActivePage(document.getElementById('navOptions').children[0])">
         <div id="container">
             <main id="login">
                 <article id="welcomePage">
@@ -58,5 +58,6 @@
             </nav>
         </div>
         <script src="scripts/login.js"></script>
+        <script src="scripts/navigation.js"></script>
     </body>
 </html>
