@@ -21,11 +21,64 @@ body {
 }
 
 #store {
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     background-color: rgb(255, 252, 242, 0.8);
     border: 14px groove rgb(135, 118, 110);
     width: 100%;
     height: 80%;
+}
+
+#store h1, #statistics h1{
+    font-size: 2vw;
+    width: 100%;
+    border-bottom: 14px groove rgb(135, 118, 110);
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+
+#productList, #statisticList{
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    margin-top: -5% ;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#productList li, #statisticList li{
+    text-indent: 0;
+    height: 25%;
+    border-bottom: 10px solid;
+    border-image: linear-gradient(to right, rgb(135, 118, 110), rgba(255, 252, 242, 0.1), transparent);
+    border-image-slice: 1;
+}
+
+#productList::-webkit-scrollbar, #statisticList::-webkit-scrollbar {
+    width: 15px;
+}
+
+#productList::-webkit-scrollbar-thumb, #statisticList::-webkit-scrollbar-thumb {
+    background: rgba(135, 118, 110, 0.8); 
+}
+
+#productList::-webkit-scrollbar-track, #statisticList::-webkit-scrollbar-track {
+    background: rgba(255, 252, 242, 0.4);
+}
+
+
+#productList::-webkit-scrollbar-button, #statisticList::-webkit-scrollbar-button {
+    background: rgba(135, 118, 110, 0.8); 
+}
+
+#productList::-webkit-scrollbar-button:hover, #productList::-webkit-scrollbar-thumb:hover,
+#statisticList::-webkit-scrollbar-button:hover, #statisticList::-webkit-scrollbar-thumb:hover {
+    background: rgba(135, 118, 110, 1);
 }
 
 #settings {
@@ -69,46 +122,78 @@ body {
 
 #coins {
     box-sizing: border-box;
-    width: 70%;
+    width: 65%;
     height: 100%;
     background-image: url("../images/rsz_menu.jpg");
     border: 8px groove rgb(255, 252, 242);
+    font-size: 3vw;
+    text-align: center;
+    color: rgb(255, 252, 242);
+    padding-top: 2%;
+}
+
+#coins img {
+    width: 18%;
+    vertical-align: middle;
+    padding-right: 10%;
+    /* padding-left: 10px;  */
 }
 
 #lvl {
     box-sizing: border-box;
-    width: 25%;
+    width: 30%;
     height: 100%;
     background-image: url("../images/rsz_menu.jpg");
     border: 8px groove rgb(255, 252, 242);
-
+    font-size: 3vw;
+    color: rgb(255, 252, 242);
+    text-align: center;
+    padding-top: 3%;
 }
 
-#coinsTotal {
+#statistics {
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     width: 100%;
-    height: 10%;
+    height: 50%;
     background-color: rgb(255, 252, 242, 0.8);
     border: 8px groove rgb(135, 118, 110);
 }
 
-#achievUnlocked {
-    box-sizing: border-box;
-    width: 100%;
-    height: 45%;
-    background-image: url("../images/rsz_menu.jpg");
-    border: 8px groove rgb(255, 252, 242);
+#statistics h1 {
+
+}
+
+#statisticList {
+    margin-top: -3.5%;
+    height: 77%;
 }
 
 #quest {
     box-sizing: border-box;
     width: 100%;
     height: 20%;
-    background-color: rgb(255, 252, 242, 0.8);
-    border: 8px groove rgb(135, 118, 110);
-
+    background-image: url("../images/rsz_menu.jpg");
+    border: 4px groove rgb(255, 252, 242);
+    border-bottom: 14px groove rgb(255, 252, 242);
+    border-right: 14px groove rgb(255, 252, 242);
 }
 
+#quest a {
+    display: block;
+    text-decoration: none;
+    color: rgb(255, 252, 242);
+    font-size: 4vw;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 5%
+}
+
+#quest a:hover {
+    background-color: rgba(255, 252, 242, 0.1);
+}
 
 
 
