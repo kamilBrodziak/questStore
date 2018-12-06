@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="styles/studentPanel.css">
         <script src="scripts/cookies.js"></script>
     </head>
-    <body>
+    <body onload="changeActivePage(document.getElementById('navOptions').children[1])">
         <div id="container">
             <div id="main">
                 <div id="leftPart">
@@ -43,5 +43,6 @@
                 </ul>
             </nav>
         </div>
+        <script src="scripts/navigation.js"></script>
     </body>
 </html>

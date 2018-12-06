@@ -1,4 +1,6 @@
-window.onload = function() {
+window.addEventListener("load", loadingPage);
+
+function loadingPage(){
     var accountAnchor = getCookie("accountAnchor");
     if(accountAnchor !== "") {
         document.getElementById("main_anchor").setAttribute("href", "menu.html");

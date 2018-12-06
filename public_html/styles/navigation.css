@@ -39,8 +39,8 @@ nav {
     color: rgb(255, 252, 242);
 }
 
-#navOptions li:hover {
-    margin-top: -10px;
+#navOptions li:hover, #active{
+    margin-top: -1%;
 }
 
 
