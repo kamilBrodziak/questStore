@@ -3,6 +3,7 @@ window.onload = function() {
     if(accountAnchor !== "") {
         document.getElementById("main_anchor").setAttribute("href", "menu.html");
         document.getElementById("account_anchor").setAttribute("href", accountAnchor);
+        document.getElementById("quests_anchor").setAttribute("href", "student-quests.html");
     } else {
         document.getElementById("account_anchor").parentElement.setAttribute("class", "disabled");
         document.getElementById("quests_anchor").parentElement.setAttribute("class", "disabled");
@@ -44,6 +45,6 @@ function deleteCookie(cname) {
 var logoutButton = document.getElementById("logout_anchor");
 
 function logout() {
-    deleteCookie("mainAnchor");
+    deleteCookie("accountAnchor");
     return true;
 }
