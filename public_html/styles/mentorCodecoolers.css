@@ -17,40 +17,41 @@ section h1
 	text-align: center;
 	padding: 0;
 	margin: 0;
+
 }
 article ul > li:nth-child(2)
 {
 	color: red;
 }
-#form
+.codecooler
 {
-	margin-left: 33.5%;
+	width: 23%;
+	height: 23%;
+	background-color: #876218;
+	margin: 4%;
+	float: left;
+	border-radius: 25px;
+	padding: 1%;
+}
+.codecooler
+{
+	margin-top: 6%;
 }
 input[type="text"]
 {
-	width: 40%;
-	font-size: 1.25vw;
-	box-sizing: border-box;
+	width: 60%;
 	border-radius: 25px;
+	border: none;
 }
 label
 {
-	font-size: 1.75vw;
-}
-input[type="radio"]
-{
-	margin-top: 3%;
-	padding: 0;
-	margin: 0;
-}
-.radioClass
-{
-	font-size: 1vw;
+	font-weight: 700;
 }
 input[type="submit"]
 {
+	display: flex;
 	width: 40%;
-	font-size: 1.85vw;
+	font-size: 1vw;
 	margin-bottom: 2.5%;
 	margin-top: 7%;
 	box-sizing: border-box;
@@ -58,15 +59,19 @@ input[type="submit"]
 	background-color: #d64646;
 	color: black;
 	border: 2px solid #680808;
+	float: left;
+	margin-left: 6%;
 }
 input[type="submit"] ~ input[type="submit"]
 {
-	margin-top: 2.5%;
-	font-size: 1.85vw;
+	display: flex;
+	margin-top: 7%;
+	font-size: 1vw;
 	border-radius: 25px;
 	background-color: #4ed867;
 	color: black;
 	border: 2px solid #02440e;
+	float: left;
 }
 input[type="submit"]:hover
 {
