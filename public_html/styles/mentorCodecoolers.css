@@ -1,0 +1,83 @@
+section
+{
+	width: 70%;
+	height: 70%;
+	background-color: #e0b764;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8%;
+	opacity: 0.85;
+	border-radius: 50px;
+}
+section h1
+{
+	color: black;
+	font-weight: 500;
+	font-size: 3vw;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+
+}
+article ul > li:nth-child(2)
+{
+	color: red;
+}
+.codecooler
+{
+	width: 23%;
+	height: 23%;
+	background-color: #876218;
+	margin: 4%;
+	float: left;
+	border-radius: 25px;
+	padding: 1%;
+}
+.codecooler
+{
+	margin-top: 6%;
+}
+input[type="text"]
+{
+	width: 60%;
+	border-radius: 25px;
+	border: none;
+}
+label
+{
+	font-weight: 700;
+}
+input[type="submit"]
+{
+	display: flex;
+	width: 40%;
+	font-size: 1vw;
+	margin-bottom: 2.5%;
+	margin-top: 7%;
+	box-sizing: border-box;
+	border-radius: 25px;
+	background-color: #d64646;
+	color: black;
+	border: 2px solid #680808;
+	float: left;
+	margin-left: 6%;
+}
+input[type="submit"] ~ input[type="submit"]
+{
+	display: flex;
+	margin-top: 7%;
+	font-size: 1vw;
+	border-radius: 25px;
+	background-color: #4ed867;
+	color: black;
+	border: 2px solid #02440e;
+	float: left;
+}
+input[type="submit"]:hover
+{
+	background-color: #841a1a;
+}
+input[type="submit"] ~ input[type="submit"]:hover
+{
+	background-color: #18822b;
+}

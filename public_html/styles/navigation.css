@@ -30,10 +30,6 @@ nav {
     transition: all 0.4s ease;
 }
 
-#navOptions li:last-child:hover {
-    margin-top: 0px;
-}
-
 #navOptions li a {
     display: block;
     width: 100%;
@@ -43,17 +39,19 @@ nav {
     color: rgb(255, 252, 242);
 }
 
-#navOptions li:hover {
-    margin-top: -10px;
+#navOptions li:hover, #active{
+    margin-top: -1%;
 }
 
 
 #navOptions li.disabled a {
     pointer-events: none;
+    font-size: 0 !important;
+
 }
 
 #navOptions li.disabled:hover {
     margin-top: 0px;
-    cursor: not-allowed;
+    cursor: default;
 }
 

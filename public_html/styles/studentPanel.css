@@ -1,0 +1,117 @@
+body {
+    background-image: url("../images/studentpanel.jpeg");
+    background-position-x: 40%;
+}
+
+#main {
+    display: flex;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 2%;
+    height: 90%;
+    margin-bottom: 2%;
+    justify-content: space-between;
+}
+
+#leftPart {
+    display: flex;
+    width: 36%;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#store {
+    box-sizing: border-box;
+    background-color: rgb(255, 252, 242, 0.8);
+    border: 14px groove rgb(135, 118, 110);
+    width: 100%;
+    height: 80%;
+}
+
+#settings {
+    box-sizing: border-box;
+    height: 15%;
+    width: 100%;
+    background-image: url("../images/rsz_menu.jpg");
+    border: 4px groove rgb(255, 252, 242);
+    border-bottom: 14px groove rgb(255, 252, 242);
+    border-right: 14px groove rgb(255, 252, 242);
+    text-align: center;
+}
+
+#settings_anchor {
+    padding-top: 5%;
+    display: block;
+    text-decoration: none;
+    color: rgb(255, 252, 242);
+    font-size: 2vw;
+    width: 100%;
+    height: 90%;
+}
+
+#settings:hover > #settings_anchor {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#rightPart {
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#stat {
+    display: flex;
+    width: 100%;
+    height: 15%;
+    justify-content: space-between;
+}
+
+#coins {
+    box-sizing: border-box;
+    width: 70%;
+    height: 100%;
+    background-image: url("../images/rsz_menu.jpg");
+    border: 8px groove rgb(255, 252, 242);
+}
+
+#lvl {
+    box-sizing: border-box;
+    width: 25%;
+    height: 100%;
+    background-image: url("../images/rsz_menu.jpg");
+    border: 8px groove rgb(255, 252, 242);
+
+}
+
+#coinsTotal {
+    box-sizing: border-box;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(255, 252, 242, 0.8);
+    border: 8px groove rgb(135, 118, 110);
+}
+
+#achievUnlocked {
+    box-sizing: border-box;
+    width: 100%;
+    height: 45%;
+    background-image: url("../images/rsz_menu.jpg");
+    border: 8px groove rgb(255, 252, 242);
+}
+
+#quest {
+    box-sizing: border-box;
+    width: 100%;
+    height: 20%;
+    background-color: rgb(255, 252, 242, 0.8);
+    border: 8px groove rgb(135, 118, 110);
+
+}
+
+
+
+
+
+
+

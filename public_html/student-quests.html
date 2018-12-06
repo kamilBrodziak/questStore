@@ -10,10 +10,14 @@
         <link rel="stylesheet" type="text/css" href="styles/main.css">
         <link rel="stylesheet" type="text/css" href="styles/navigation.css">
         <link rel="stylesheet" type="text/css" href="styles/student-view-quests.css">
+<<<<<<< HEAD
         <link rel="stylesheet" type="text/css" href="icons/css/rpg-awesome.css">
 
+=======
+        <script src="scripts/cookies.js"></script>
+>>>>>>> e6363ce7e9e7f2e1c19be17c2406afc77e82f389
     </head>
-    <body>
+    <body onload="changeActivePage(document.getElementById('navOptions').children[2])">
         <div id="container">
             <main>
                 <section class="main-quests">
@@ -96,13 +100,23 @@
             </main>
             <nav>
                 <ul id="navOptions">
+<<<<<<< HEAD
                         <li><a href="#">Main</a></li>
                         <li><a href="#">Account</a></li>
                         <li><a href="#">Quests</a></li>
                         <li><a href="#">Contact</a></li>
                         <li></li>
+=======
+                        <li><a id="main_anchor" href="index.html">Main</a></li>
+                        <li><a id="account_anchor" href="#">Account</a></li>
+                        <li><a id="quests_anchor" href="#">Quests</a></li>
+                        <li><a id="contact_anchor" href="contact.html">Contact</a></li>
+                        <li><a id="logout_anchor" href="index.html" onclick="return logout()">Logout</a></li>
+>>>>>>> e6363ce7e9e7f2e1c19be17c2406afc77e82f389
                 </ul>
             </nav>
         </div>
+        <script src="scripts/navigation.js"></script>
+
     </body>
 </html>

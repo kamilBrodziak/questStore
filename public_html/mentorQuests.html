@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Quest Store</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Quest Store for Codecool">
+        <meta name="keywords" content="quests">
+        <meta name="author" content="Kamil Brodziak, Hubert Strumiński, Maciek Paluszkiewicz">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <link rel="stylesheet" type="text/css" href="styles/navigation.css">
+        <link rel="stylesheet" type="text/css" href="styles/mentorMenu.css">
+        <link rel="stylesheet" type="text/css" href="styles/mentorQuests.css">
+
+    </head>
+    <body>
+        <div id="container">
+            <main>
+                <article>
+                    <ul style="list-style-type: none;">
+                        <li>MENU</li>
+                        <li>CODECOOLERS</li>
+                        <li>QUESTS</li>
+                        <li>STORE</li>
+                        <li>ACHIEVEMENT</li>
+                        <li>STATISTICS</li>
+                    </ul>
+                </article>
+
+                <article id="articleSecond">
+                    <section>
+                        <h1>Add Quest</h1>
+                        <div id="divForm">
+                          <label>Set Value:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                          <input type="text" id="setterValue" /> <br /><br /><br />
+                          <label>Add Description:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                          <input type="text" id="setterDescription" /> <br /><br /><br />
+                          <label>Add Category:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                          <input type="radio" name="categories" value="single" /><label class="labelRadio">Single</label> <br />
+                          <input type="radio" name="categories" value="team" /><label class="labelRadio">Team</label><br /><br />
+                          <input type="submit" value="ACCEPT" id="btnAccept" />
+                        </div>
+                    </section>
+                </article>
+
+                <div style="clear: both;"></div>
+            </main>
+            <nav>
+                <ul id="navOptions">
+                    <li><a href="#">Main</a></li>
+                    <li><a href="#">Account</a></li>
+                    <li><a href="#">Quests</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li></li>
+                </ul>
+            </nav>
+        </div>
+    </body>
+</html>
