@@ -2,7 +2,7 @@ section
 {
 	width: 70%;
 	height: 70%;
-	background-color: #6d4409;
+	background-color: #e0b764;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 8%;
@@ -13,38 +13,53 @@ article ul > li:nth-child(3)
 {
 	color: red;
 }
-#articleSecond section ol
+section h1
 {
-	padding: 0;
-	margin: 0;
-	height: 100%;
-}
-#articleSecond section ol > li
-{
-	width: 100%;
-	height: 25%;
-	font-weight: 500;
-	font-size: 2.6vw;
 	text-align: center;
-	border-bottom: 2px solid white;
-	line-height: 300%;
-	color: white;
+	font-weight: 500;
+	font-size: 3vw;
+	margin: 0;
+	padding: 0;
 }
-#articleSecond section ol > li:nth-child(4)
+label
 {
-	border-bottom: none;
+	font-size: 1.75vw;
+	font-weight: 500;
 }
-#articleSecond section ol > li:hover
+input[type="text"]
 {
-	background-color: black;
-	opacity: 0.8;
-	cursor: pointer;
+	border-radius: 25px;
+	border: none;
+	width: 30%;
+	font-size: 2vw;
+	box-sizing: border-box;
 }
-#articleSecond section ol > li:nth-child(1):hover
+input[type="radio"]
 {
-	border-radius: 50px 50px 0 0;
+	margin-top: 2%;
 }
-#articleSecond section ol > li:nth-child(4):hover
+.labelRadio
 {
-	border-radius: 0 0 50px 50px;
+	font-size: 1.25vw;
+	margin-left: 1%;
+}
+input[type="submit"]
+{
+	width: 30%;
+	padding: 0.75%;
+	font-size: 2vw;
+	background-color: #4dc440;
+	box-sizing: border-box;
+	border-radius: 25px;
+	border: 2px solid #0c5904;
+	color: black;
+}
+input[type="submit"]:hover
+{
+	background-color: #28871d;
+}
+#divForm
+{
+	margin-left: 5%;
+	margin-top: 3%;
 }

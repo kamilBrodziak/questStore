@@ -29,12 +29,17 @@
 
                 <article id="articleSecond">
                     <section>
-                      <ol style="list-style-type: none;">
-                          <li>ADD QUEST</li>
-                          <li>SET VALUE</li>
-                          <li>ADD DESCRIPTION</li>
-                          <li>ADD CATEGORY</li>
-                      </ol>
+                        <h1>Add Quest</h1>
+                        <div id="divForm">
+                          <label>Set Value:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                          <input type="text" id="setterValue" /> <br /><br /><br />
+                          <label>Add Description:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                          <input type="text" id="setterDescription" /> <br /><br /><br />
+                          <label>Add Category:</label><span style="color: red; font-size: 1.75vw;"><sup>*</sup></span><br />
+                          <input type="radio" name="categories" value="single" /><label class="labelRadio">Single</label> <br />
+                          <input type="radio" name="categories" value="team" /><label class="labelRadio">Team</label><br /><br />
+                          <input type="submit" value="ACCEPT" id="btnAccept" />
+                        </div>
                     </section>
                 </article>
 
