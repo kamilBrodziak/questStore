@@ -21,3 +21,13 @@ body {
 main {
     height: 90%;
 }
+
+a:visited {
+    color: inherit;
+}
+
+a {
+    display: block;
+    width: 100%;
+    height: 100%;;
+}

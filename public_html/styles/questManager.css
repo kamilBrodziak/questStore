@@ -1,3 +1,105 @@
 body {
-    background-image: url("../images/mentorMenu.jpg");
+    background-image: url("../images/quests.jpeg");
+}
+
+#main {
+    display: flex;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 2%;
+    height: 90%;
+    margin-bottom: 2%;
+    justify-content: space-between;
+}
+
+#leftPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    height: 100%;
+}
+
+#questsCompleted {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: rgb(255, 252, 242, 0.9);
+    border: 14px groove rgb(135, 118, 110);
+    width: 100%;
+    height: 80%;
+}
+
+#questsActive {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: rgb(255, 252, 242, 0.9);
+    border: 14px groove rgb(135, 118, 110);
+    width: 40%;
+    height: 100%;
+}
+
+#questsActive h1, #questsCompleted h1{
+    font-size: 2vw;
+    width: 100%;
+    border-bottom: 14px groove rgb(135, 118, 110);
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+#questActiveList, #questCompletedList{
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    margin-top: -5% ;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#questCompletedList li, #questActiveList li{
+    text-indent: 0;
+    height: 25%;
+    border-bottom: 10px solid;
+    border-image: linear-gradient(to right, rgb(135, 118, 110), rgba(255, 252, 242, 0.1), transparent);
+    border-image-slice: 1;
+}
+
+#questCompletedList::-webkit-scrollbar, #questActiveList::-webkit-scrollbar {
+    width: 15px;
+}
+
+#questCompletedList::-webkit-scrollbar-thumb, #questActiveList::-webkit-scrollbar-thumb {
+    background: rgba(135, 118, 110, 0.8); 
+}
+
+#questCompletedList::-webkit-scrollbar-track, #questActiveList::-webkit-scrollbar-track {
+    background: rgba(255, 252, 242, 0.4);
+}
+
+
+#questCompletedList::-webkit-scrollbar-button, #questActiveList::-webkit-scrollbar-button {
+    background: rgba(135, 118, 110, 0.8); 
+}
+
+#questCompletedList::-webkit-scrollbar-button:hover, #questCompletedList::-webkit-scrollbar-thumb:hover,
+#questActiveList::-webkit-scrollbar-button:hover, #questActiveList::-webkit-scrollbar-thumb:hover {
+    background: rgba(135, 118, 110, 1);
+}
+
+#backButton {
+    width: 100%;
+    height: 15%;
+    font-size: 2vw !important;
+    cursor: pointer;
+    background-image: url("../images/rsz_menu.jpg");
+    color: rgb(255, 252, 242);
+    border: 4px groove rgb(255, 252, 242);
+}
+
+#backButton:hover {
+    opacity: 0.9;
 }

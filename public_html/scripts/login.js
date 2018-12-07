@@ -71,14 +71,22 @@ var submitLoginButton = document.get("submit_login_button");
 function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
-
-    if(validateLogin() && email === "student@cc.cc" && password === "123") {
-        setCookie("accountAnchor", "studentPanel.html", 1);
+    if(validateLogin()) {
         var form = document.getElementById("loginForm");
-        form.setAttribute("action", "studentPanel.html");
-        return true;
-    } else {
-        document.getElementById("message").innerHTML = "Incorrect email or password!";
-        return false;
+        if(validateLogin && email === "student@cc.cc" && password === "123") {
+            setCookie("accountAnchor", "studentPanel.html", 1);
+            form.setAttribute("action", "studentPanel.html");
+            return true;
+        } else if(validateLogin && email === "mentor@cc.cc" && password === "123") {
+            setCookie("accountAnchor", "mentorMenu.html", 1);
+            form.setAttribute("action", "mentorMenu.html");
+            return true;
+        } else if(validateLogin && email === "admin@cc.cc" && password === "123") {
+            setCookie("accountAnchor", "warlord/warlord-main.html", 1);
+            form.setAttribute("action", "warlord/warlord-main.html");
+            return true;
+        }
     }
+    document.getElementById("message").innerHTML = "Incorrect email or password!";
+    return false;
 }
