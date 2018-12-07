@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="Text/css" href="styles/menu.css">
         <script src="scripts/cookies.js"></script>
     </head>
-    <body onload="changeActivePage(document.getElementById('navOptions').children[0])">
+    <body>
         <div id="container">
             <main>
                 <article>
@@ -25,7 +25,7 @@
             </main>
             <nav>
                 <ul id="navOptions">
-                        <li><a id="main_anchor" href="index.html">Main</a></li>
+                        <li id="active"><a id="main_anchor" href="index.html">Main</a></li>
                         <li><a id="account_anchor" href="#">Account</a></li>
                         <li><a id="quests_anchor" href="#">Quests</a></li>
                         <li><a id="contact_anchor" href="contact.html">Contact</a></li>
@@ -33,6 +33,5 @@
                 </ul>
             </nav>
         </div>
-        <script src="scripts/navigation.js"></script>
     </body>
 </html>

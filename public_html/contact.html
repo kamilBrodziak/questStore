@@ -13,7 +13,7 @@
         <script src="scripts/cookies.js"></script>
 
     </head>
-    <body onload="changeActivePage(document.getElementById('navOptions').children[3])">
+    <body>
         <div id="container">
             <main>
                 <section>
@@ -43,11 +43,10 @@
                     <li><a id="main_anchor" href="index.html">Main</a></li>
                     <li><a id="account_anchor" href="#">Account</a></li>
                     <li><a id="quests_anchor" href="#">Quests</a></li>
-                    <li><a id="contact_anchor" href="contact.html">Contact</a></li>
+                    <li id="active"><a id="contact_anchor" href="contact.html">Contact</a></li>
                     <li><a id="logout_anchor" href="index.html" onclick="return logout()">Logout</a></li>
                 </ul>
             </nav>
         </div>
-        <script src="scripts/navigation.js"></script>
     </body>
 </html>
