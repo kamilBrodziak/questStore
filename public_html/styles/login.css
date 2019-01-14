@@ -42,7 +42,7 @@ body {
     border-bottom: 10px groove rgb(135, 118, 110);
     border-right: 6px groove rgb(135, 118, 110);
     outline: none;
-    font-size: 200%;
+    font-size: 1.7vw;
 }
 
 #loginSection button:first-of-type {
