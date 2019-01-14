@@ -1,0 +1,56 @@
+-- Table: quests_completed
+
+-- DROP TABLE quests_completed;
+
+CREATE TABLE quests_completed
+(
+  id_student integer NOT NULL,
+  id_quest integer NOT NULL,  
+  date date
+);
+
+-----------------------------------------
+
+-- Table: quests
+
+-- DROP TABLE quests
+
+CREATE TABLE quests
+(
+  id_quest integer NOT NULL UNIQUE,
+  name text UNIQUE,
+  description varchar(150),
+  reward integer
+  creator_id integer FOREIGN KEY mentors,
+  modified_by integer FOREIGN KEY mentors
+);
+
+---------------------------------------------
+
+-- Table: artifacts_unlocked
+
+-- DROP TABLE artifacts_unlocked;
+
+CREATE TABLE artifacts_unlocked
+(
+  id_student integer NOT NULL,
+  id_artifact integer NOT NULL,  
+  date date
+);
+
+-----------------------------------------
+
+-- Table: artifacts
+
+-- DROP TABLE artifacts
+
+CREATE TABLE artifacts
+(
+  id_artifact integer NOT NULL UNIQUE,
+  name text UNIQUE,
+  description varchar(150),
+  price integer,
+  creator_id integer FOREIGN KEY mentors,
+  modified_by integer FOREIGN KEY mentors
+);
+
