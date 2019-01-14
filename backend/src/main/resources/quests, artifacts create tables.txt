@@ -54,3 +54,32 @@ CREATE TABLE artifacts
   modified_by integer FOREIGN KEY mentors
 );
 
+
+
+/*CREATE TABLE levels (
+	id SERIAL PRIMARY KEY ,
+	userId integer REFERENCES students(id),
+	level integer,
+	experience integer
+	);*/
+
+
+CREATE TABLE Ranks ( 
+	level integer UNIQUE,
+	experienceRequired integer UNIQUE
+	);
+
+CREATE TABLE achievements (
+	id SERIAL PRIMARY KEY,
+	name varchar(30) UNIQUE,
+	description varchar(100) NOT NULL,
+	experience integer NOT NULL,
+	steps integer NOT NULL
+	);
+
+CREATE TABLE achievementsCompleted (
+	id SERIAL PRIMARY KEY,
+	achievementId integer REFERENCES achievements(id) NOT NULL,
+	date Date
+	);
+
