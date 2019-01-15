@@ -1,38 +1,39 @@
 package DAO;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.security.InvalidParameterException;
+import java.sql.*;
+import java.util.List;
 
 public class DataBaseConnector {
 
         private Connection conn;
 
-        private void connect() {
+        private Connection connect() {
             try{Class.forName("jdbc:postgresql");}catch(Exception e){e.printStackTrace();}
             // SQLite connection string
-            String url = "jdbc:postgresql:/home/rageoverkill/wildwildwest/tw01qs-frontend/questStore/backend/src/main/resources/questStoreDB";
+            String url = "jdbc:postgresql://localhost:5432/db";
             try {
-                this.conn = DriverManager.getConnection(url);
+                this.conn = DriverManager.getConnection(url , "postgres", "123");
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+
+            return conn;
         }
 
-        public ResultSet query(String sql){
-
-            try {
-                this.connect();
-                Statement stmt  = conn.createStatement();
-                ResultSet rs    = stmt.executeQuery(sql);
-//            this.conn.close();
-
-                return rs;
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
+        public ResultSet query(String sql, List<String> attr) throws Exception{
+            this.connect();
+            PreparedStatement pstmt  = conn.prepareStatement(sql);
+            if(sql.split("\\?").length - 1 == attr.size()) {
+                throw new InvalidParameterException();
             }
-            return null;
+            int i = 1;
+            for(String s: attr) {
+                pstmt.setString(i++, s);
+            }
+            ResultSet rs    = pstmt.executeQuery();
+            pstmt.close();
+            this.conn.close();
+            return rs;
         }
 }
