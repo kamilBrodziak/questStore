@@ -1,3 +1,40 @@
+CREATE TABLE logins
+(
+    id serial NOT NULL PRIMARY KEY,
+    login varchar(30) NOT NULL,
+    password varchar(30) NOT NULL
+
+);
+
+CREATE TABLE students
+(
+    id serial NOT NULL PRIMARY KEY,
+    loginsID integer NOT NULL REFERENCES logins(id),
+    name varchar(30) NOT NULL,
+    surname varchar(60) NOT NULL,
+    email varchar(45) NOT NULL
+);
+
+CREATE TABLE mentors
+(
+    id serial NOT NULL PRIMARY KEY,
+    loginsID integer NOT NULL REFERENCES logins(id),
+    name varchar(30) NOT NULL,
+    surname varchar(60) NOT NULL,
+    email varchar(45) NOT NULL,
+    city varchar(60) NOT NULL,
+    beginWork date NOT NULL
+);
+
+CREATE TABLE admins
+(
+    id serial PRIMARY KEY,
+    loginsID integer NOT NULL REFERENCES logins(id),
+    name varchar(30) NOT NULL,
+    surname varchar(60) NOT NULL,
+    email varchar(45) NOT NULL
+);
+
 -- Table: quests_completed
 
 -- DROP TABLE quests_completed;
@@ -20,9 +57,9 @@ CREATE TABLE quests
   id_quest integer NOT NULL UNIQUE,
   name text UNIQUE,
   description varchar(150),
-  reward integer
-  creator_id integer FOREIGN KEY mentors,
-  modified_by integer FOREIGN KEY mentors
+  reward integer,
+  creator_id integer REFERENCES mentors(id),
+  modified_by integer REFERENCES mentors(id)
 );
 
 ---------------------------------------------
@@ -50,21 +87,21 @@ CREATE TABLE artifacts
   name text UNIQUE,
   description varchar(150),
   price integer,
-  creator_id integer FOREIGN KEY mentors,
-  modified_by integer FOREIGN KEY mentors
+  creator_id integer REFERENCES mentors(id),
+  modified_by integer REFERENCES mentors(id)
 );
 
 
 
-/*CREATE TABLE levels (
+CREATE TABLE levels (
 	id SERIAL PRIMARY KEY ,
 	userId integer REFERENCES students(id),
 	level integer,
 	experience integer
-	);*/
+	);
 
 
-CREATE TABLE Ranks ( 
+CREATE TABLE ranks ( 
 	level integer UNIQUE,
 	experienceRequired integer UNIQUE
 	);
@@ -82,4 +119,3 @@ CREATE TABLE achievementsCompleted (
 	achievementId integer REFERENCES achievements(id) NOT NULL,
 	date Date
 	);
-
