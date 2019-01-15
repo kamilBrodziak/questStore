@@ -8,7 +8,7 @@ public class DataBaseConnector {
 
         private Connection conn;
 
-        private Connection connect() {
+        public Connection connect() {
             try{Class.forName("jdbc:postgresql");}catch(Exception e){e.printStackTrace();}
             // SQLite connection string
             String url = "jdbc:postgresql://localhost:5432/db";
