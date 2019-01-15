@@ -1,18 +1,15 @@
 package Model;
 
-public class Artifact {
+public class Quest {
     private int id;
-    private String name;
-    private String description;
-    private int price;
-    private int creatorId;
-    private int modifierId;
+    private String name, description;
+    private int reward, creatorId, modifierId;
 
-    public Artifact(int id, String name, String description, int price, int creatorId, int modifierId) {
+    public Quest(int id, String name, String description, int reward, int creatorId, int modifierId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.reward = reward;
         this.creatorId = creatorId;
         this.modifierId = modifierId;
     }
@@ -25,8 +22,12 @@ public class Artifact {
         return name;
     }
 
-    public int getPrice() {
-        return price;
+    public String getDescription() {
+        return description;
+    }
+
+    public int getReward() {
+        return reward;
     }
 
     public int getCreatorId() {
@@ -35,9 +36,5 @@ public class Artifact {
 
     public int getModifierId() {
         return modifierId;
-    }
-
-    public String getDescription() {
-        return description;
     }
 }

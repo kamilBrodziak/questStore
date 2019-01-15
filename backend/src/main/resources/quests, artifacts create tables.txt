@@ -23,7 +23,7 @@ CREATE TABLE mentors
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL,
     city varchar(60) NOT NULL,
-    beginWork date NOT NULL
+    begin_work date NOT NULL
 );
 
 CREATE TABLE admins
@@ -112,7 +112,7 @@ CREATE TABLE achievements (
 	name varchar(30) UNIQUE,
 	description varchar(100) NOT NULL,
 	experience integer NOT NULL,
-	steps integer NOT NULL
+	tier integer
 	);
 
 CREATE TABLE achievementsCompleted (

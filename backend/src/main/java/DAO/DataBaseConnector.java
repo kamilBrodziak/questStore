@@ -14,6 +14,7 @@ public class DataBaseConnector {
             String url = "jdbc:postgresql://localhost:5432/db";
             try {
                 this.conn = DriverManager.getConnection(url , "postgres", "123");
+                this.conn.setAutoCommit(false);
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -31,7 +32,7 @@ public class DataBaseConnector {
             for(String s: attr) {
                 pstmt.setString(i++, s);
             }
-            ResultSet rs    = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             pstmt.close();
             this.conn.close();
             return rs;
