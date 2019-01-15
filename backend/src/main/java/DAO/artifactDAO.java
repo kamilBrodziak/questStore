@@ -73,4 +73,16 @@ public class artifactDAO {
         connection.commit();
         connection.close();
     }
+
+    public void unlockArtifact(int studentId, int artifactId) throws Exception {
+        Connection connection = dbCon.connect();
+        String query = "INSERT INTO artifacts_unlocked(id_student, id_artifact) VALUES(?::integer, ?::integer);";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString(1, studentId + "");
+        pstmt.setString(2, artifactId + "");
+        pstmt.executeUpdate();
+        pstmt.close();
+        connection.commit();
+        connection.close();
+    }
 }

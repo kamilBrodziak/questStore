@@ -18,10 +18,10 @@ public class questDAO {
         this.dbCon = dbCon;
     }
 
-    public List<Quest> getQuests() throws Exception {
+    public List<Quest> getQuests(String tableName) throws Exception {
         String query = "SELECT * FROM ?;";
         List<String> queryAttr = new ArrayList<>();
-        queryAttr.add("quests");
+        queryAttr.add(tableName);
         ResultSet rs = dbCon.query(query, queryAttr);
         List<Quest> questList = new ArrayList<>();
 
@@ -72,6 +72,18 @@ public class questDAO {
         String query = "DELETE quests WHERE id_quest=?;";
         PreparedStatement pstmt = connection.prepareStatement(query);
         pstmt.setString(1, id + "");
+        pstmt.executeUpdate();
+        pstmt.close();
+        connection.commit();
+        connection.close();
+    }
+
+    public void completeQuest(int studentId, int questId) throws Exception {
+        Connection connection = dbCon.connect();
+        String query = "INSERT INTO quests_completed(id_student, id_quest) VALUES(?::integer, ?::integer);";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString(1, studentId + "");
+        pstmt.setString(2, questId + "");
         pstmt.executeUpdate();
         pstmt.close();
         connection.commit();

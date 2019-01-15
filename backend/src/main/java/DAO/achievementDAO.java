@@ -17,10 +17,10 @@ public class achievementDAO {
         this.dbCon = dbCon;
     }
 
-    public List<Achievement> getAchievements() throws Exception {
+    public List<Achievement> getAchievements(String tableName) throws Exception {
         String query = "SELECT * FROM ?;";
         List<String> queryAttr = new ArrayList<>();
-        queryAttr.add("achievements");
+        queryAttr.add(tableName);
         ResultSet rs = dbCon.query(query, queryAttr);
         List<Achievement> achievementList = new ArrayList<>();
 
@@ -71,6 +71,18 @@ public class achievementDAO {
         String query = "DELETE achievements WHERE id=?;";
         PreparedStatement pstmt = connection.prepareStatement(query);
         pstmt.setString(1, id + "");
+        pstmt.executeUpdate();
+        pstmt.close();
+        connection.commit();
+        connection.close();
+    }
+
+    public void completeAchievement(int studentId, int achievementId) throws Exception {
+        Connection connection = dbCon.connect();
+        String query = "INSERT INTO achievements_completed(id_student, id_achievement) VALUES(?::integer, ?::integer);";
+        PreparedStatement pstmt = connection.prepareStatement(query);
+        pstmt.setString(1, studentId + "");
+        pstmt.setString(2, achievementId + "");
         pstmt.executeUpdate();
         pstmt.close();
         connection.commit();
