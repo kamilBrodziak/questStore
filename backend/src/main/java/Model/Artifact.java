@@ -13,6 +13,7 @@ public class Artifact {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.id = id;
         this.creatorId = creatorId;
         this.modifierId = modifierId;
     }
