@@ -101,7 +101,8 @@ CREATE TABLE levels (
 	);
 
 
-CREATE TABLE ranks ( 
+CREATE TABLE ranks (
+    id SERIAL PRIMARY KEY,
 	level integer UNIQUE,
 	experienceRequired integer UNIQUE
 	);
