@@ -28,22 +28,22 @@ public class questDAO {
         while(rs.next()) {
             Quest quest = new Quest(rs.getInt("id"),
                     rs.getString("name"), rs.getString("description"), rs.getInt("reward"),
-                    rs.getInt("creator_id", rs.getInt("modified_by")));
+                    rs.getInt("creator_id"), rs.getInt("modified_by"));
             questList.add(quest);
         }
 
         return questList;
     }
 
-    public void addQuest(Achievement achievement) throws Exception{
+    public void addQuest(Quest quest) throws Exception{
         Connection connection = dbCon.connect();
 
-        String query = "INSERT INTO achievements(name, description, experience, tier) VALUES(?, ?, ?::integer, ?::integer);";
+        String query = "INSERT INTO quests(name, description, reward, creator_id) VALUES(?, ?, ?::integer, ?::integer);";
         PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, achievement.getName());
-        pstmt.setString(2, achievement.getDescription());
-        pstmt.setString(3, achievement.getExperience() + "");
-        pstmt.setString(4, achievement.getTier() + "");
+        pstmt.setString(1, quest.getName());
+        pstmt.setString(2, quest.getDescription());
+        pstmt.setString(3, quest.getReward() + "");
+        pstmt.setString(4, quest.getCreatorId() + "");
 
         pstmt.executeUpdate();
         pstmt.close();
@@ -51,15 +51,15 @@ public class questDAO {
         connection.close();
     }
 
-    public void updateQuest(Achievement achievement) throws Exception{
+    public void updateQuest(Quest quest) throws Exception{
         Connection connection = dbCon.connect();
-        String query = "UPDATE achievements SET name=?, description=?, experience=?, tier=? WHERE id=?;";
+        String query = "UPDATE quests SET name=?, description=?, reward=?, modified_by=? WHERE id_quest=?;";
         PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, achievement.getName());
-        pstmt.setString(2, achievement.getDescription());
-        pstmt.setString(3, achievement.getExperience() + "");
-        pstmt.setString(4, achievement.getTier() + "");
-        pstmt.setString(5, achievement.getId() + "");
+        pstmt.setString(1, quest.getName());
+        pstmt.setString(2, quest.getDescription());
+        pstmt.setString(3, quest.getReward() + "");
+        pstmt.setString(4, quest.getModifierId() + "");
+        pstmt.setString(6, quest.getId() + "");
 
         pstmt.executeUpdate();
         pstmt.close();
@@ -69,7 +69,7 @@ public class questDAO {
 
     public void deleteQuest(int id) throws Exception {
         Connection connection = dbCon.connect();
-        String query = "DELETE achievements WHERE id=?;";
+        String query = "DELETE quests WHERE id_quest=?;";
         PreparedStatement pstmt = connection.prepareStatement(query);
         pstmt.setString(1, id + "");
         pstmt.executeUpdate();

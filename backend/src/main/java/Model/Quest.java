@@ -1,12 +1,12 @@
 package Model;
 
 public class Quest {
-    private int id_quest;
+    private int id;
     private String name, description;
     private int reward, creatorId, modifierId;
 
-    public Quest(int id_quest, String name, String description, int reward, int creatorId, int modifierId) {
-        this.id_quest = id_quest;
+    public Quest(int id, String name, String description, int reward, int creatorId, int modifierId) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.reward = reward;
@@ -14,8 +14,8 @@ public class Quest {
         this.modifierId = modifierId;
     }
 
-    public int getId_quest() {
-        return id_quest;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
