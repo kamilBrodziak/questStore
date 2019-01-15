@@ -1,40 +1,31 @@
 package Model;
 
-public class Artifact {
-    private int id;
-    private String name;
-    private String description;
-    private int price;
-    private int creatorId;
-    private int modifierId;
+public class Achievement {
+    private int id, experience, tier;
+    private String name, description;
 
-    public Artifact(int id, String name, String description, int price, int creatorId, int modifierId) {
+    public Achievement(int id, String name, String description, int experience, int tier) {
         this.id = id;
+        this.experience = experience;
+        this.tier = tier;
         this.name = name;
         this.description = description;
-        this.price = price;
-        this.creatorId = creatorId;
-        this.modifierId = modifierId;
     }
 
     public int getId() {
         return id;
     }
 
+    public int getExperience() {
+        return experience;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getCreatorId() {
-        return creatorId;
-    }
-
-    public int getModifierId() {
-        return modifierId;
     }
 
     public String getDescription() {
