@@ -9,7 +9,7 @@ CREATE TABLE logins
 CREATE TABLE students
 (
     id serial NOT NULL PRIMARY KEY,
-    loginsID integer NOT NULL REFERENCES logins(id),
+    logins_id integer NOT NULL REFERENCES logins(id),
     name varchar(30) NOT NULL,
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL
@@ -18,18 +18,18 @@ CREATE TABLE students
 CREATE TABLE mentors
 (
     id serial NOT NULL PRIMARY KEY,
-    loginsID integer NOT NULL REFERENCES logins(id),
+    logins_id integer NOT NULL REFERENCES logins(id),
     name varchar(30) NOT NULL,
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL,
     city varchar(60) NOT NULL,
-    beginWork date NOT NULL
+    begin_work date NOT NULL
 );
 
 CREATE TABLE admins
 (
     id serial PRIMARY KEY,
-    loginsID integer NOT NULL REFERENCES logins(id),
+    logins_id integer NOT NULL REFERENCES logins(id),
     name varchar(30) NOT NULL,
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL
@@ -111,7 +111,7 @@ CREATE TABLE achievements (
 	name varchar(30) UNIQUE,
 	description varchar(100) NOT NULL,
 	experience integer NOT NULL,
-	steps integer NOT NULL
+	tier integer
 	);
 
 CREATE TABLE achievementsCompleted (
