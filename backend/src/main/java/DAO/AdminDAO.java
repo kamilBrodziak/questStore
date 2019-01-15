@@ -21,10 +21,10 @@ public class AdminDAO {
         parametersQueries.add(beginWork);
         parametersQueries.add(String.valueOf(logins_id));
 
-        dataBaseConnector.query("INSERT INTO mentors (name, surname, email, city, beginWork, logins_id) VALUES (?, ?, ?, ?, ?);", parametersQueries);
+        dataBaseConnector.query("INSERT INTO mentors (name, surname, email, city, beginWork, logins_id) VALUES (?, ?, ?, ?, ?, ?);", parametersQueries);
     }
 
-    public void editMentor(String name, String surname, String email, String city, String beginWork, String logins_id) throws Exception{
+    public void editMentor(String name, String surname, String email, String city, String beginWork, String logins_id, int id) throws Exception{
         List<String> parametersQuery = new ArrayList<String>();
 
         parametersQuery.add(name);
@@ -33,6 +33,7 @@ public class AdminDAO {
         parametersQuery.add(city);
         parametersQuery.add(beginWork);
         parametersQuery.add(logins_id);
+        parametersQuery.add(String.valueOf(id));
 
         dataBaseConnector.query("UPDATE mentors SET name = ?, surname = ?, email = ?, city = ?, beginWork = ?, logins_id = ? WHERE id = ?", parametersQuery);
     }
