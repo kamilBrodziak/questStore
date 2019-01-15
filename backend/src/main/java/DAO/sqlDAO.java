@@ -1,8 +1,8 @@
 package DAO;
 
 public class sqlDAO {
-    private Connector dbCon = null;
+    private DataBaseConnector dbCon = null;
     public sqlDAO() {
-        Connector dbCon = new Connector();
+        DataBaseConnector dbCon = new DataBaseConnector ();
     }
 }
