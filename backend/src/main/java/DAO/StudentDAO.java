@@ -1,4 +1,4 @@
-package main.java.DAO;
+package DAO;
 
 import Model.Student;
 
@@ -29,7 +29,7 @@ public class StudentDAO {
             insertStatement.setString(1, student.getName());
             insertStatement.setString(2, student.getSurname());
             insertStatement.setString(3, student.getEmail());
-            insertStatement.setInt(6, student.getLoginsID());
+            insertStatement.setInt(4, student.getLoginsID());
 
             insertStatement.addBatch();
             insertStatement.executeBatch();
@@ -57,7 +57,7 @@ public class StudentDAO {
             pstmt.setString(1, student.getName());
             pstmt.setString(2, student.getSurname());
             pstmt.setString(3, student.getEmail());
-            pstmt.setInt(6, student.getLoginsID());
+            pstmt.setInt(4, student.getLoginsID());
 
             pstmt.executeUpdate(sql);
             c.commit();
@@ -103,13 +103,15 @@ public class StudentDAO {
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
-            rs = stmt.executeQuery( "SELECT name, surname, email FROM students");
+            rs = stmt.executeQuery( "SELECT id, logins_id, name, surname, email FROM students");
             while ( rs.next() ) {
+                int id = rs.getInt("id");
+                int logins_id = rs.getInt("logins_id");
                 String  name = rs.getString("name");
                 String surname  = rs.getString("surname");
                 String  email = rs.getString("email");
 
-                result.add(new Student(name, surname, email));
+                result.add(new Student(id, logins_id, name, surname, email));
             }
         } catch ( Exception e ) {
             System.err.println(e.getClass().getName()+ ": " + e.getMessage());
@@ -130,17 +132,18 @@ public class StudentDAO {
         try {
             c = dataBaseConnector.connect();
 
-            String sql = "SELECT name, surname, email FROM students WHERE id = ?";
+            String sql = "SELECT id, logins_id, name, surname, email FROM students WHERE id = ?";
             pstmt = c.prepareStatement(sql);
 
             pstmt.setInt(1, id);
 
             while (rs.next()) {
+                int logins_id = rs.getInt("logins_id");
                 String  name = rs.getString("name");
                 String surname  = rs.getString("surname");
                 String  email = rs.getString("email");
 
-                student = new Student(name, surname, email);
+                student = new Student(id, logins_id, name, surname, email);
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName()+ ": " + e.getMessage());
@@ -152,6 +155,4 @@ public class StudentDAO {
         }
         return student;
     }
-}
-
 }
