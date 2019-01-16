@@ -1,4 +1,4 @@
-package main.java.services;
+package Service;
 
 import java.util.Date;
 
