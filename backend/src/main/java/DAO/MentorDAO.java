@@ -1,17 +1,16 @@
 package DAO;
 
 import Model.Mentor;
-import Model.Rank;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDAO {
+public class MentorDAO {
 
     private DataBaseConnector dataBaseConnector;
 
-    public AdminDAO(){
+    public MentorDAO(){
         this.dataBaseConnector = new DataBaseConnector();
     }
 
@@ -98,78 +97,67 @@ public class AdminDAO {
         }
     }
 
-    public void addRanks(Rank rank) throws Exception{
-        Connection c = null;
+    public List<Mentor> selectAllMentors() throws Exception{
+        List<Mentor> result = new ArrayList<Mentor>();
         Statement stmt = null;
-        PreparedStatement insertStatement = null;
+        Connection c = null;
+        ResultSet rs = null;
         try {
             c = dataBaseConnector.connect();
             c.setAutoCommit(false);
 
             stmt = c.createStatement();
+            rs = stmt.executeQuery( "SELECT name, surname, email, city, begin_work FROM mentors");
+            while ( rs.next() ) {
+                String  name = rs.getString("name");
+                String surname  = rs.getString("surname");
+                String  email = rs.getString("email");
+                String city = rs.getString("city");
+                String  beginWork = rs.getString("begin_work");
 
-            insertStatement = c.prepareStatement("INSERT INTO ranks (level, experienceRequired) VALUES (?, ?);");
-
-            insertStatement.setInt(1, rank.getLevel());
-            insertStatement.setInt(2, rank.getExperienceRequired());
-
-            insertStatement.addBatch();
-            insertStatement.executeBatch();
-            c.commit();
-
-        } catch (Exception e) {
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-
+                result.add(new Mentor(name, surname, email, city, beginWork));
+            }
+        } catch ( Exception e ) {
+            System.err.println(e.getClass().getName()+ ": " + e.getMessage());
+            System.exit(0);
         }finally{
+            rs.close();
             stmt.close();
-            insertStatement.close();
             c.close();
         }
+        return result;
     }
 
-    public void editRanks(Rank rank) throws Exception{
+    public Mentor selectOneMentor(int id) throws Exception{
         Connection c = null;
+        ResultSet rs = null;
         PreparedStatement pstmt = null;
-        try{
+        Mentor mentor = null;
+        try {
             c = dataBaseConnector.connect();
 
-            String sql = "UPDATE ranks SET level = ?, experienceRequired = ? WHERE id = ?";
-
+            String sql = "SELECT name, surname, email, city, begin_work FROM mentors WHERE id = ?";
             pstmt = c.prepareStatement(sql);
 
-            pstmt.setInt(1, rank.getLevel());
-            pstmt.setInt(2, rank.getExperienceRequired());
-            pstmt.setInt(3, rank.getId());
+            pstmt.setInt(1, id);
 
-            pstmt.executeUpdate(sql);
-            c.commit();
-        }catch(Exception e){
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            while (rs.next()) {
+                String  name = rs.getString("name");
+                String surname  = rs.getString("surname");
+                String  email = rs.getString("email");
+                String city = rs.getString("city");
+                String  beginWork = rs.getString("begin_work");
+
+                mentor = new Mentor(name, surname, email, city, beginWork);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName()+ ": " + e.getMessage());
+            System.exit(0);
         }finally{
+            rs.close();
             pstmt.close();
             c.close();
         }
-    }
-
-    public void deleteRanks(Rank rank) throws Exception{
-        Connection c = null;
-        PreparedStatement pstmt = null;
-        try{
-            c = dataBaseConnector.connect();
-
-            String sql = "DELETE FROM ranks WHERE id = ?";
-
-            pstmt = c.prepareStatement(sql);
-
-            pstmt.setInt(1, rank.getId());
-
-            pstmt.executeUpdate(sql);
-            c.commit();
-        }catch(Exception e){
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }finally{
-            pstmt.close();
-            c.close();
-        }
+        return mentor;
     }
 }
