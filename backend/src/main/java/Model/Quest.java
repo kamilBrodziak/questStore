@@ -37,4 +37,24 @@ public class Quest {
     public int getModifierId() {
         return modifierId;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
+
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public void setModifierId(int modifierId) {
+        this.modifierId = modifierId;
+    }
 }

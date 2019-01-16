@@ -41,4 +41,28 @@ public class Achievement {
     public int getModifierId() {
         return modifierId;
     }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
+    }
+
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public void setModifierId(int modifierId) {
+        this.modifierId = modifierId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

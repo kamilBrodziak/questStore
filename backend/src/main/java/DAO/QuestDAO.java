@@ -35,6 +35,22 @@ public class QuestDAO {
         return questList;
     }
 
+    public Quest getQuest(String tableName, int id) throws Exception {
+        String query = "SELECT * FROM ? WHERE id_quest=?;";
+        List<String> queryAttr = new ArrayList<>();
+        queryAttr.add(tableName);
+        queryAttr.add(id + "");
+        ResultSet rs = dbCon.query(query, queryAttr);
+
+        if(rs.next()) {
+            return new Quest(rs.getInt("id"),
+                    rs.getString("name"), rs.getString("description"), rs.getInt("reward"),
+                    rs.getInt("creator_id"), rs.getInt("modified_by"));
+        }
+
+        return null;
+    }
+
     public void addQuest(Quest quest) throws Exception{
         String query = "INSERT INTO quests(name, description, reward, creator_id) VALUES(?, ?, ?::integer, ?::integer);";
         String[] queryAttr = {quest.getName(), quest.getDescription(), quest.getReward() + "", quest.getCreatorId() + ""};

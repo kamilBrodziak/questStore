@@ -55,9 +55,9 @@ public class ComponentUnlockDAO {
         List<E> components = new ArrayList<>();
         while(rs.next()) {
             Class[] classes = {Integer.class, String.class, String.class, Integer.class, Integer.class, Integer.class};
-            E component =(E) cls.getDeclaredConstructor(classes).newInstance(rs.getInt("a." + componentCol),
+            E component =(E)( cls.getDeclaredConstructor(classes).newInstance(rs.getInt("a." + componentCol),
                     rs.getString("a.name"), rs.getString("a.description"), rs.getInt("a.price"),
-                    rs.getInt("a.creator_id"), rs.getInt("a.modified_by"));
+                    rs.getInt("a.creator_id"), rs.getInt("a.modified_by")));
             components.add(component);
         }
 
@@ -84,9 +84,9 @@ public class ComponentUnlockDAO {
         dbCon.updateSQL(query, queryAttr);
     }
 
-    public void approveComponent(ComponentsCompleted componentsCompleted, String tableName) throws Exception{
+    public void approveComponent(int id,  String tableName) throws Exception{
         String query = "UPDATE " + tableName + " SET approved=? WHERE id=?;";
-        String[] queryAttr = {"true", componentsCompleted.getId() + ""};
+        String[] queryAttr = {"true", id + ""};
         dbCon.updateSQL(query, queryAttr);
     }
 

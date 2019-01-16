@@ -40,4 +40,24 @@ public class Artifact {
     public String getDescription() {
         return description;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public void setModifierId(int modifierId) {
+        this.modifierId = modifierId;
+    }
 }

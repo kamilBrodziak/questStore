@@ -4,6 +4,7 @@ import Model.Rank;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class RanksDAO {
@@ -113,5 +114,23 @@ public class RanksDAO {
             c.close();
         }
         return null;
+    }
+
+    public Rank getRank(int experienceRequired) throws Exception {
+        Connection c = null;
+        PreparedStatement pstmt = null;
+        c = dataBaseConnector.connect();
+
+        String sql = "SELECT * FROM ranks WHERE experienceRequired >? ORDER BY experienceRequired LIMIT 1;";
+        pstmt = c.prepareStatement(sql);
+
+        pstmt.setInt(1, experienceRequired);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        Rank rank =  new Rank(rs.getInt("id"),rs.getInt("level"), rs.getInt("experienceRequired"));
+        pstmt.close();
+        c.close();
+        return rank;
     }
 }

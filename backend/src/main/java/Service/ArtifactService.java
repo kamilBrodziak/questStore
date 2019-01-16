@@ -41,7 +41,8 @@ public class ArtifactService {
         ComponentsCompleted component = componentUnlockDAO.getComponent("artifacts_unlocked",
                 "id_artifact", id);
         component.setApproved(true);
-        componentUnlockDAO.approveComponent(component, "artifacts");
+
+        componentUnlockDAO.approveComponent(component.getId(), "artifacts");
         return true;
     }
 
@@ -61,8 +62,13 @@ public class ArtifactService {
         artDAO.addArtifact(new Artifact(0, name, description, price, creatorId, 0));
     }
 
-    public void updateArtifact(String name, String description, int price, int creatorId, int modified_by) throws Exception{
-        artDAO.updateArtifact(new Artifact(0, name, description, price, creatorId, modified_by));
+    public void updateArtifact(int id, String name, String description, int price, int modified_by) throws Exception{
+        Artifact artifact = artDAO.getArtifact("artifacts", id);
+        artifact.setName(name);
+        artifact.setDescription(description);
+        artifact.setPrice(price);
+        artifact.setModifierId(modified_by);
+        artDAO.updateArtifact(artifact);
     }
 
     public void deleteArtifact(int id) throws Exception{
