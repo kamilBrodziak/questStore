@@ -27,7 +27,7 @@ public class achievementDAO {
         while(rs.next()) {
             Achievement achievement = new Achievement(rs.getInt("id"),
                     rs.getString("name"), rs.getString("description"), rs.getInt("experience"),
-                    rs.getInt("tier"));
+                    rs.getInt("tier"), rs.getInt("creator_id"), rs.getInt("modified_by"));
             achievementList.add(achievement);
         }
 
@@ -35,57 +35,29 @@ public class achievementDAO {
     }
 
     public void addAchievement(Achievement achievement) throws Exception{
-        Connection connection = dbCon.connect();
-
-        String query = "INSERT INTO achievements(name, description, experience, tier) VALUES(?, ?, ?::integer, ?::integer);";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, achievement.getName());
-        pstmt.setString(2, achievement.getDescription());
-        pstmt.setString(3, achievement.getExperience() + "");
-        pstmt.setString(4, achievement.getTier() + "");
-
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String query = "INSERT INTO achievements(name, description, experience, tier, creator_id) VALUES(?, ?," +
+                " ?::integer, ?::integer, ?::integer);";
+        String[] queryAttr = {achievement.getName(), achievement.getDescription(), achievement.getExperience() + "",
+            achievement.getTier() + "", achievement.getCreatorId() + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
-    public void updateAchievement(Achievement achievement) throws Exception{
-        Connection connection = dbCon.connect();
-        String query = "UPDATE achievements SET name=?, description=?, experience=?, tier=? WHERE id=?;";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, achievement.getName());
-        pstmt.setString(2, achievement.getDescription());
-        pstmt.setString(3, achievement.getExperience() + "");
-        pstmt.setString(4, achievement.getTier() + "");
-        pstmt.setString(5, achievement.getId() + "");
-
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+    public void updateAchievement(Achievement achievement, int modifierId) throws Exception{
+        String query = "UPDATE achievements SET name=?, description=?, experience=?, tier=?, modified_by=? WHERE id=?;";
+        String[] queryAttr = {achievement.getName(), achievement.getDescription(), achievement.getExperience() + "",
+            achievement.getTier() + "", modifierId + "", achievement.getId() + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteAchievement(int id) throws Exception {
-        Connection connection = dbCon.connect();
         String query = "DELETE achievements WHERE id=?;";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, id + "");
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {id + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void completeAchievement(int studentId, int achievementId) throws Exception {
-        Connection connection = dbCon.connect();
         String query = "INSERT INTO achievements_completed(id_student, id_achievement) VALUES(?::integer, ?::integer);";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, studentId + "");
-        pstmt.setString(2, achievementId + "");
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {studentId + "", achievementId + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 }

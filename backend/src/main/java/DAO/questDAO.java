@@ -36,57 +36,27 @@ public class questDAO {
     }
 
     public void addQuest(Quest quest) throws Exception{
-        Connection connection = dbCon.connect();
-
         String query = "INSERT INTO quests(name, description, reward, creator_id) VALUES(?, ?, ?::integer, ?::integer);";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, quest.getName());
-        pstmt.setString(2, quest.getDescription());
-        pstmt.setString(3, quest.getReward() + "");
-        pstmt.setString(4, quest.getCreatorId() + "");
-
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {quest.getName(), quest.getDescription(), quest.getReward() + "", quest.getCreatorId() + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateQuest(Quest quest) throws Exception{
-        Connection connection = dbCon.connect();
         String query = "UPDATE quests SET name=?, description=?, reward=?, modified_by=? WHERE id_quest=?;";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, quest.getName());
-        pstmt.setString(2, quest.getDescription());
-        pstmt.setString(3, quest.getReward() + "");
-        pstmt.setString(4, quest.getModifierId() + "");
-        pstmt.setString(6, quest.getId() + "");
-
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {quest.getName(), quest.getDescription(), quest.getReward() + "",
+            quest.getModifierId() + "", quest.getId() + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteQuest(int id) throws Exception {
-        Connection connection = dbCon.connect();
         String query = "DELETE quests WHERE id_quest=?;";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, id + "");
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {id + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void completeQuest(int studentId, int questId) throws Exception {
-        Connection connection = dbCon.connect();
         String query = "INSERT INTO quests_completed(id_student, id_quest) VALUES(?::integer, ?::integer);";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, studentId + "");
-        pstmt.setString(2, questId + "");
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {studentId + "", questId + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 }

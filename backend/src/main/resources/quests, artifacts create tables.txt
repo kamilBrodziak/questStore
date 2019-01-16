@@ -59,6 +59,8 @@ CREATE TABLE quests
   description varchar(150),
   reward integer,
   creator_id integer REFERENCES mentors(id),
+  modified_by integer REFERENCES mentors(id),
+  creator_id integer REFERENCES mentors(id),
   modified_by integer REFERENCES mentors(id)
 );
 
@@ -97,7 +99,8 @@ CREATE TABLE levels (
 	id SERIAL PRIMARY KEY ,
 	userId integer REFERENCES students(id),
 	level integer,
-	experience integer
+	experience integer,
+	money integer
 	);
 
 
@@ -112,7 +115,9 @@ CREATE TABLE achievements (
 	name varchar(30) UNIQUE,
 	description varchar(100) NOT NULL,
 	experience integer NOT NULL,
-	tier integer
+	tier integer,
+	creator_id integer REFERENCES mentors(id),
+	modified_by integer REFERENCES mentors(id)
 	);
 
 CREATE TABLE achievements_completed (
