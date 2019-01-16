@@ -41,9 +41,9 @@ CREATE TABLE admins
 
 CREATE TABLE quests_completed
 (
-  id_student integer NOT NULL,
-  id_quest integer NOT NULL,  
-  date date
+  id_student integer REFERENCES students(id),
+  id_quest integer REFERENCES quests(id),  
+  date date DEFAULT current_date
 );
 
 -----------------------------------------
@@ -59,6 +59,8 @@ CREATE TABLE quests
   description varchar(150),
   reward integer,
   creator_id integer REFERENCES mentors(id),
+  modified_by integer REFERENCES mentors(id),
+  creator_id integer REFERENCES mentors(id),
   modified_by integer REFERENCES mentors(id)
 );
 
@@ -70,9 +72,9 @@ CREATE TABLE quests
 
 CREATE TABLE artifacts_unlocked
 (
-  id_student integer NOT NULL,
-  id_artifact integer NOT NULL,  
-  date date
+  id_student integer REFERENCES students(id),
+  id_artifact integer REFERENCES artifacts(id_artifact),  
+  date date DEFAULT CURRENT_DATE
 );
 
 -----------------------------------------
@@ -97,7 +99,8 @@ CREATE TABLE levels (
 	id SERIAL PRIMARY KEY ,
 	userId integer REFERENCES students(id),
 	level integer,
-	experience integer
+	experience integer,
+	money integer
 	);
 
 
@@ -112,11 +115,13 @@ CREATE TABLE achievements (
 	name varchar(30) UNIQUE,
 	description varchar(100) NOT NULL,
 	experience integer NOT NULL,
-	tier integer
+	tier integer,
+	creator_id integer REFERENCES mentors(id),
+	modified_by integer REFERENCES mentors(id)
 	);
 
-CREATE TABLE achievementsCompleted (
-	id SERIAL PRIMARY KEY,
-	achievementId integer REFERENCES achievements(id) NOT NULL,
-	date Date
+CREATE TABLE achievements_completed (
+	id_student integer REFERENCES students(id),
+	id_achievement integer REFERENCES achievements(id) NOT NULL,
+	date Date DEFAULT CURRENT_DATE
 	);

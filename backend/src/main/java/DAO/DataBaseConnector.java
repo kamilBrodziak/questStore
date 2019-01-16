@@ -37,4 +37,17 @@ public class DataBaseConnector {
             this.conn.close();
             return rs;
         }
+
+        public void updateSQL(String query, String[] queryAttr) throws Exception {
+            connect();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            for(int i = 1; i <= queryAttr.length; ++i) {
+                pstmt.setString(i, queryAttr[i - 1]);
+            }
+
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.commit();
+            conn.close();
+        }
 }

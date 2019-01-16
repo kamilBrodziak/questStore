@@ -32,45 +32,27 @@ public class artifactDAO {
     }
 
     public void addArtifact(Artifact artifact) throws Exception{
-        Connection connection = dbCon.connect();
-
         String query = "INSERT INTO artifacts(name, description, creator_id) VALUES(?, ?, ?::integer, ?::integer);";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, artifact.getName());
-        pstmt.setString(2, artifact.getDescription());
-        pstmt.setString(3, artifact.getPrice() + "");
-        pstmt.setString(4, artifact.getCreatorId() + "");
-
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {artifact.getName(), artifact.getDescription(), artifact.getPrice() + "", artifact.getCreatorId() + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateArtifact(Artifact artifact) throws Exception{
-        Connection connection = dbCon.connect();
         String query = "UPDATE artifacts SET name=?, description=?, price=?, modified_by=? WHERE id_artifact=?;";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, artifact.getName());
-        pstmt.setString(2, artifact.getDescription());
-        pstmt.setString(3, artifact.getPrice() + "");
-        pstmt.setString(4, artifact.getModifierId() + "");
-        pstmt.setString(5, artifact.getId() + "");
-
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {artifact.getName(), artifact.getDescription(), artifact.getPrice() + "",
+                artifact.getModifierId() + "", artifact.getId() + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteArtifact(int id) throws Exception {
-        Connection connection = dbCon.connect();
         String query = "DELETE artifacts WHERE id_artifact=?;";
-        PreparedStatement pstmt = connection.prepareStatement(query);
-        pstmt.setString(1, id + "");
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.commit();
-        connection.close();
+        String[] queryAttr = {id + ""};
+        dbCon.updateSQL(query, queryAttr);
+    }
+
+    public void unlockArtifact(int studentId, int artifactId) throws Exception {
+        String query = "INSERT INTO artifacts_unlocked(id_student, id_artifact) VALUES(?::integer, ?::integer);";
+        String[] queryAttr = {studentId + "", artifactId + ""};
+        dbCon.updateSQL(query, queryAttr);
     }
 }
