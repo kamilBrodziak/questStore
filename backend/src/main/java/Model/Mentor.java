@@ -31,6 +31,14 @@ public class Mentor {
         this.loginsID = loginsID;
     }
 
+    public Mentor(String name, String surname, String email, String city, String beginWork) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.city = city;
+        this.beginWork = beginWork;
+    }
+
     public int getId() {
         return id;
     }
