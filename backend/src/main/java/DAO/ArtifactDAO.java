@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class artifactDAO {
+public class ArtifactDAO {
     private DataBaseConnector dbCon = null;
-    public artifactDAO(DataBaseConnector dbCon) {
+    public ArtifactDAO(DataBaseConnector dbCon) {
         this.dbCon = dbCon;
     }
 
-    public List<Artifact> getArtifact(String tableName) throws Exception {
+    public List<Artifact> getArtifactList(String tableName) throws Exception {
         String query = "SELECT * FROM ?;";
         List<String> queryAttr = new ArrayList<>();
         queryAttr.add(tableName);
@@ -29,6 +29,20 @@ public class artifactDAO {
         }
 
         return artifactList;
+    }
+
+    public Artifact getArtifact(String tableName, int artifactId) throws Exception{
+        String query = "SELECT * FROM ? WHERE id_artifact=?";
+        List<String> queryAttr = new ArrayList<>();
+        queryAttr.add(tableName);
+        queryAttr.add(artifactId + "");
+        ResultSet rs = dbCon.query(query, queryAttr);
+        if(rs.next()) {
+            return new Artifact(rs.getInt("id_artifact"), rs.getString("name"),
+                    rs.getString("description"), rs.getInt("price"),
+                    rs.getInt("creator_id"), rs.getInt("modified_by"));
+        }
+        return null;
     }
 
     public void addArtifact(Artifact artifact) throws Exception{

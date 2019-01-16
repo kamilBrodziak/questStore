@@ -10,10 +10,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class achievementDAO {
+public class AchievementDAO {
     private DataBaseConnector dbCon = null;
 
-    public achievementDAO(DataBaseConnector dbCon) {
+    public AchievementDAO(DataBaseConnector dbCon) {
         this.dbCon = dbCon;
     }
 

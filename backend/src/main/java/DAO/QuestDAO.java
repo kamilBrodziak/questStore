@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class questDAO {
+public class QuestDAO {
     private DataBaseConnector dbCon = null;
 
-    public questDAO(DataBaseConnector dbCon) {
+    public QuestDAO(DataBaseConnector dbCon) {
         this.dbCon = dbCon;
     }
 

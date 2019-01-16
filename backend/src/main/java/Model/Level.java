@@ -34,4 +34,16 @@ public class Level {
     public int getLevel() {
         return level;
     }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }

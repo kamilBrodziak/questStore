@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class levelDAO {
+public class LevelDAO {
     private DataBaseConnector dbCon = null;
-    public levelDAO(DataBaseConnector dbCon) {
+    public LevelDAO(DataBaseConnector dbCon) {
         this.dbCon = dbCon;
     }
 
