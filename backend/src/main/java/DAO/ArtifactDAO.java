@@ -2,8 +2,6 @@ package DAO;
 
 import Model.Artifact;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +20,9 @@ public class ArtifactDAO {
         List<Artifact> artifactList = new ArrayList<>();
 
         while(rs.next()) {
-            Artifact artifact = new Artifact(rs.getInt("id_artifact"), rs.getString("name"),
+            Artifact artifact = new Artifact(rs.getInt("id"), rs.getString("name"),
                     rs.getString("description"), rs.getInt("price"),
-                    rs.getInt("creator_id"), rs.getInt("modified_by"));
+                    rs.getInt("id_creator"), rs.getInt("id_modifier"));
             artifactList.add(artifact);
         }
 
@@ -32,27 +30,27 @@ public class ArtifactDAO {
     }
 
     public Artifact getArtifact(String tableName, int artifactId) throws Exception{
-        String query = "SELECT * FROM ? WHERE id_artifact=?";
+        String query = "SELECT * FROM ? WHERE id=?";
         List<String> queryAttr = new ArrayList<>();
         queryAttr.add(tableName);
         queryAttr.add(artifactId + "");
         ResultSet rs = dbCon.query(query, queryAttr);
         if(rs.next()) {
-            return new Artifact(rs.getInt("id_artifact"), rs.getString("name"),
+            return new Artifact(rs.getInt("id"), rs.getString("name"),
                     rs.getString("description"), rs.getInt("price"),
-                    rs.getInt("creator_id"), rs.getInt("modified_by"));
+                    rs.getInt("id_creator"), rs.getInt("id_modifier"));
         }
         return null;
     }
 
     public void addArtifact(Artifact artifact) throws Exception{
-        String query = "INSERT INTO artifacts(name, description, creator_id) VALUES(?, ?, ?::integer, ?::integer);";
+        String query = "INSERT INTO artifacts(name, description, id_creator) VALUES(?, ?, ?::integer, ?::integer);";
         String[] queryAttr = {artifact.getName(), artifact.getDescription(), artifact.getPrice() + "", artifact.getCreatorId() + ""};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateArtifact(Artifact artifact) throws Exception{
-        String query = "UPDATE artifacts SET name=?, description=?, price=?, modified_by=? WHERE id_artifact=?;";
+        String query = "UPDATE artifacts SET name=?, description=?, price=?, id_modifier=? WHERE id=?;";
         String[] queryAttr = {artifact.getName(), artifact.getDescription(), artifact.getPrice() + "",
                 artifact.getModifierId() + "", artifact.getId() + ""};
         dbCon.updateSQL(query, queryAttr);

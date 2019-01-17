@@ -1,6 +1,5 @@
 package DAO;
 
-import Model.Artifact;
 import Model.ComponentJoin;
 import Model.ComponentsCompleted;
 
@@ -48,7 +47,7 @@ public class ComponentUnlockDAO {
     }
 
     public<E> List<E> getStudentApprovedList(String tableName, String componentTable, String componentCol, int studentId, Class cls) throws Exception{
-        String query = "SELECT a." + componentCol + ", a.name, a.description, a.price, a.creator_id, a.modified_by FROM " + tableName + " b" + " JOIN " +
+        String query = "SELECT a." + componentCol + ", a.name, a.description, a.price, a.id_creator, a.id_modifier FROM " + tableName + " b" + " JOIN " +
                 componentTable + " a ON .id = b." + componentCol + " WHERE b.approved=true AND id_student=" + studentId + ";";
         ResultSet rs = dbCon.query(query, new ArrayList<>());
 
@@ -57,7 +56,7 @@ public class ComponentUnlockDAO {
             Class[] classes = {Integer.class, String.class, String.class, Integer.class, Integer.class, Integer.class};
             E component =(E)( cls.getDeclaredConstructor(classes).newInstance(rs.getInt("a." + componentCol),
                     rs.getString("a.name"), rs.getString("a.description"), rs.getInt("a.price"),
-                    rs.getInt("a.creator_id"), rs.getInt("a.modified_by")));
+                    rs.getInt("a.id_creator"), rs.getInt("a.id_modifier")));
             components.add(component);
         }
 

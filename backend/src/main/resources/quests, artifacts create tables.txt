@@ -9,7 +9,7 @@ CREATE TABLE logins
 CREATE TABLE students
 (
     id serial NOT NULL PRIMARY KEY,
-    logins_id integer NOT NULL REFERENCES logins(id),
+    id_logins integer NOT NULL REFERENCES logins(id),
     name varchar(30) NOT NULL,
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL
@@ -18,7 +18,7 @@ CREATE TABLE students
 CREATE TABLE mentors
 (
     id serial NOT NULL PRIMARY KEY,
-    logins_id integer NOT NULL REFERENCES logins(id),
+    id_logins integer NOT NULL REFERENCES logins(id),
     name varchar(30) NOT NULL,
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE mentors
 CREATE TABLE admins
 (
     id serial PRIMARY KEY,
-    logins_id integer NOT NULL REFERENCES logins(id),
+    id_logins integer NOT NULL REFERENCES logins(id),
     name varchar(30) NOT NULL,
     surname varchar(60) NOT NULL,
     email varchar(45) NOT NULL
@@ -38,6 +38,23 @@ CREATE TABLE admins
 -- Table: quests_completed
 
 -- DROP TABLE quests_completed;
+
+-----------------------------------------
+
+-- Table: quests
+
+-- DROP TABLE quests
+
+CREATE TABLE quests
+(
+  id integer NOT NULL UNIQUE,
+  name varchar(50) UNIQUE,
+  description varchar(150),
+  reward integer,
+  id_creator integer REFERENCES mentors(id),
+  id_modifier integer REFERENCES mentors(id),
+  quest_type integer DEFAULT 1
+);
 
 CREATE TABLE quests_completed
 (
@@ -48,36 +65,11 @@ CREATE TABLE quests_completed
   approved boolean DEFAULT false
 );
 
------------------------------------------
-
--- Table: quests
-
--- DROP TABLE quests
-
-CREATE TABLE quests
-(
-  id_quest integer NOT NULL UNIQUE,
-  name text UNIQUE,
-  description varchar(150),
-  reward integer,
-  creator_id integer REFERENCES mentors(id),
-  modified_by integer REFERENCES mentors(id)
-);
-
 ---------------------------------------------
 
 -- Table: artifacts_unlocked
 
 -- DROP TABLE artifacts_unlocked;
-
-CREATE TABLE artifacts_unlocked
-(
-  id SERIAL PRIMARY KEY,
-  id_student integer REFERENCES students(id),
-  id_artifact integer REFERENCES artifacts(id_artifact),
-  date date DEFAULT CURRENT_DATE,
-  approved boolean DEFAULT false
-);
 
 -----------------------------------------
 
@@ -87,45 +79,52 @@ CREATE TABLE artifacts_unlocked
 
 CREATE TABLE artifacts
 (
-  id_artifact integer NOT NULL UNIQUE,
-  name text UNIQUE,
+  id integer NOT NULL UNIQUE,
+  name varchar(50) UNIQUE,
   description varchar(150),
   price integer,
-  creator_id integer REFERENCES mentors(id),
-  modified_by integer REFERENCES mentors(id)
+  id_creator integer REFERENCES mentors(id),
+  id_modifier integer REFERENCES mentors(id)
+);
+
+CREATE TABLE artifacts_unlocked
+(
+  id SERIAL PRIMARY KEY,
+  id_student integer REFERENCES students(id),
+  id_artifact integer REFERENCES artifacts(id),
+  date date DEFAULT CURRENT_DATE,
+  approved boolean DEFAULT false
+);
+
+CREATE TABLE levels (
+  id SERIAL PRIMARY KEY ,
+  id_user integer REFERENCES students(id),
+  level integer,
+  experience integer,
+  money integer
 );
 
 
-
-CREATE TABLE levels (
-	id SERIAL PRIMARY KEY ,
-	userId integer REFERENCES students(id),
-	level integer,
-	experience integer,
-	money integer
-	);
-
-
 CREATE TABLE ranks (
-    id SERIAL PRIMARY KEY,
-	level integer UNIQUE,
-	experienceRequired integer UNIQUE
-	);
+  id SERIAL PRIMARY KEY,
+  level integer UNIQUE,
+  experience_required integer UNIQUE
+);
 
 CREATE TABLE achievements (
-	id SERIAL PRIMARY KEY,
-	name varchar(30) UNIQUE,
-	description varchar(100) NOT NULL,
-	experience integer NOT NULL,
-	tier integer,
-	creator_id integer REFERENCES mentors(id),
-	modified_by integer REFERENCES mentors(id)
-	);
+  id SERIAL PRIMARY KEY,
+  name varchar(50) UNIQUE,
+  description varchar(100) NOT NULL,
+  experience integer NOT NULL,
+  tier integer,
+  id_creator integer REFERENCES mentors(id),
+  id_modifier integer REFERENCES mentors(id)
+);
 
 CREATE TABLE achievements_completed (
-  	id SERIAL PRIMARY KEY,
-	id_student integer REFERENCES students(id),
-	id_achievement integer REFERENCES achievements(id) NOT NULL,
-	date Date DEFAULT CURRENT_DATE,
-	approved boolean DEFAULT false
-	);
+  id SERIAL PRIMARY KEY,
+  id_student integer REFERENCES students(id),
+  id_achievement integer REFERENCES achievements(id) NOT NULL,
+  date Date DEFAULT CURRENT_DATE,
+  approved boolean DEFAULT false
+);

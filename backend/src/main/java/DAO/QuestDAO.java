@@ -1,12 +1,7 @@
 package DAO;
 
-
-
-import Model.Achievement;
 import Model.Quest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +23,7 @@ public class QuestDAO {
         while(rs.next()) {
             Quest quest = new Quest(rs.getInt("id"),
                     rs.getString("name"), rs.getString("description"), rs.getInt("reward"),
-                    rs.getInt("creator_id"), rs.getInt("modified_by"));
+                    rs.getInt("id_creator"), rs.getInt("id_modifier"));
             questList.add(quest);
         }
 
@@ -36,7 +31,7 @@ public class QuestDAO {
     }
 
     public Quest getQuest(String tableName, int id) throws Exception {
-        String query = "SELECT * FROM ? WHERE id_quest=?;";
+        String query = "SELECT * FROM ? WHERE id=?;";
         List<String> queryAttr = new ArrayList<>();
         queryAttr.add(tableName);
         queryAttr.add(id + "");
@@ -45,27 +40,27 @@ public class QuestDAO {
         if(rs.next()) {
             return new Quest(rs.getInt("id"),
                     rs.getString("name"), rs.getString("description"), rs.getInt("reward"),
-                    rs.getInt("creator_id"), rs.getInt("modified_by"));
+                    rs.getInt("id_creator"), rs.getInt("id_modifier"));
         }
 
         return null;
     }
 
     public void addQuest(Quest quest) throws Exception{
-        String query = "INSERT INTO quests(name, description, reward, creator_id) VALUES(?, ?, ?::integer, ?::integer);";
+        String query = "INSERT INTO quests(name, description, reward, id_creator) VALUES(?, ?, ?::integer, ?::integer);";
         String[] queryAttr = {quest.getName(), quest.getDescription(), quest.getReward() + "", quest.getCreatorId() + ""};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateQuest(Quest quest) throws Exception{
-        String query = "UPDATE quests SET name=?, description=?, reward=?, modified_by=? WHERE id_quest=?;";
+        String query = "UPDATE quests SET name=?, description=?, reward=?, id_modifier=? WHERE id=?;";
         String[] queryAttr = {quest.getName(), quest.getDescription(), quest.getReward() + "",
             quest.getModifierId() + "", quest.getId() + ""};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteQuest(int id) throws Exception {
-        String query = "DELETE quests WHERE id_quest=?;";
+        String query = "DELETE quests WHERE id=?;";
         String[] queryAttr = {id + ""};
         dbCon.updateSQL(query, queryAttr);
     }

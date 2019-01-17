@@ -1,11 +1,7 @@
 package DAO;
 
-
-
 import Model.Achievement;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +23,7 @@ public class AchievementDAO {
         while(rs.next()) {
             Achievement achievement = new Achievement(rs.getInt("id"),
                     rs.getString("name"), rs.getString("description"), rs.getInt("experience"),
-                    rs.getInt("tier"), rs.getInt("creator_id"), rs.getInt("modified_by"));
+                    rs.getInt("tier"), rs.getInt("id_creator"), rs.getInt("id_modifier"));
             achievementList.add(achievement);
         }
 
@@ -44,14 +40,14 @@ public class AchievementDAO {
         if(rs.next()) {
             return new Achievement(rs.getInt("id"),
                     rs.getString("name"), rs.getString("description"), rs.getInt("experience"),
-                    rs.getInt("tier"), rs.getInt("creator_id"), rs.getInt("modified_by"));
+                    rs.getInt("tier"), rs.getInt("id_creator"), rs.getInt("id_modifier"));
         }
 
         return null;
     }
 
     public void addAchievement(Achievement achievement) throws Exception{
-        String query = "INSERT INTO achievements(name, description, experience, tier, creator_id) VALUES(?, ?," +
+        String query = "INSERT INTO achievements(name, description, experience, tier, id_creator) VALUES(?, ?," +
                 " ?::integer, ?::integer, ?::integer);";
         String[] queryAttr = {achievement.getName(), achievement.getDescription(), achievement.getExperience() + "",
             achievement.getTier() + "", achievement.getCreatorId() + ""};
@@ -59,7 +55,7 @@ public class AchievementDAO {
     }
 
     public void updateAchievement(Achievement achievement) throws Exception{
-        String query = "UPDATE achievements SET name=?, description=?, experience=?, tier=?, modified_by=? WHERE id=?;";
+        String query = "UPDATE achievements SET name=?, description=?, experience=?, tier=?, id_modifier=? WHERE id=?;";
         String[] queryAttr = {achievement.getName(), achievement.getDescription(), achievement.getExperience() + "",
             achievement.getTier() + "", achievement.getModifierId() + "", achievement.getId() + ""};
         dbCon.updateSQL(query, queryAttr);
