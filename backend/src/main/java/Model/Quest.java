@@ -3,15 +3,16 @@ package Model;
 public class Quest {
     private int id;
     private String name, description;
-    private int reward, creatorId, modifierId;
+    private int reward, creatorId, modifierId, questType;
 
-    public Quest(int id, String name, String description, int reward, int creatorId, int modifierId) {
+    public Quest(int id, String name, String description, int reward, int creatorId, int modifierId, int questType) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.reward = reward;
         this.creatorId = creatorId;
         this.modifierId = modifierId;
+        this.questType = questType;
     }
 
     public int getId() {
@@ -56,5 +57,13 @@ public class Quest {
 
     public void setModifierId(int modifierId) {
         this.modifierId = modifierId;
+    }
+
+    public int getQuestType() {
+        return questType;
+    }
+
+    public void setQuestType(int questType) {
+        this.questType = questType;
     }
 }

@@ -14,8 +14,7 @@ public class ArtifactDAO {
 
     public List<Artifact> getArtifactList(String tableName) throws Exception {
         String query = "SELECT * FROM ?;";
-        List<String> queryAttr = new ArrayList<>();
-        queryAttr.add(tableName);
+        String[] queryAttr = {tableName};
         ResultSet rs = dbCon.query(query, queryAttr);
         List<Artifact> artifactList = new ArrayList<>();
 
@@ -31,9 +30,7 @@ public class ArtifactDAO {
 
     public Artifact getArtifact(String tableName, int artifactId) throws Exception{
         String query = "SELECT * FROM ? WHERE id=?";
-        List<String> queryAttr = new ArrayList<>();
-        queryAttr.add(tableName);
-        queryAttr.add(artifactId + "");
+        String[] queryAttr = {tableName, Integer.toString(artifactId)};
         ResultSet rs = dbCon.query(query, queryAttr);
         if(rs.next()) {
             return new Artifact(rs.getInt("id"), rs.getString("name"),
@@ -45,26 +42,21 @@ public class ArtifactDAO {
 
     public void addArtifact(Artifact artifact) throws Exception{
         String query = "INSERT INTO artifacts(name, description, id_creator) VALUES(?, ?, ?::integer, ?::integer);";
-        String[] queryAttr = {artifact.getName(), artifact.getDescription(), artifact.getPrice() + "", artifact.getCreatorId() + ""};
+        String[] queryAttr = {artifact.getName(), artifact.getDescription(),
+                Integer.toString(artifact.getPrice()), Integer.toString(artifact.getCreatorId())};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateArtifact(Artifact artifact) throws Exception{
         String query = "UPDATE artifacts SET name=?, description=?, price=?, id_modifier=? WHERE id=?;";
-        String[] queryAttr = {artifact.getName(), artifact.getDescription(), artifact.getPrice() + "",
-                artifact.getModifierId() + "", artifact.getId() + ""};
+        String[] queryAttr = {artifact.getName(), artifact.getDescription(), Integer.toString(artifact.getPrice()),
+                Integer.toString(artifact.getModifierId()), Integer.toString(artifact.getId())};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteArtifact(int id) throws Exception {
         String query = "DELETE artifacts WHERE id_artifact=?;";
-        String[] queryAttr = {id + ""};
-        dbCon.updateSQL(query, queryAttr);
-    }
-
-    public void unlockArtifact(int studentId, int artifactId) throws Exception {
-        String query = "INSERT INTO artifacts_unlocked(id_student, id_artifact) VALUES(?::integer, ?::integer);";
-        String[] queryAttr = {studentId + "", artifactId + ""};
+        String[] queryAttr = {Integer.toString(id)};
         dbCon.updateSQL(query, queryAttr);
     }
 }

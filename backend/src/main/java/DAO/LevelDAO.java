@@ -14,8 +14,7 @@ public class LevelDAO {
 
     public List<Level> getLevels(String tableName) throws Exception {
         String query = "SELECT * FROM ?;";
-        List<String> queryAttr = new ArrayList<>();
-        queryAttr.add(tableName);
+        String[] queryAttr = {tableName};
         ResultSet rs = dbCon.query(query, queryAttr);
         List<Level> levelList = new ArrayList<>();
 
@@ -31,9 +30,8 @@ public class LevelDAO {
 
     public Level getLevel(String tableName, int userID) throws Exception{
         String query = "SELECT * FROM ? WHERE id_user=?";
-        List<String> queryAttr = new ArrayList<>();
-        queryAttr.add(tableName);
-        queryAttr.add(userID + "");
+
+        String[] queryAttr = {tableName, Integer.toString(userID)};
         ResultSet rs = dbCon.query(query, queryAttr);
         if(rs.next()) {
             return new Level(rs.getInt("id"), rs.getInt("id_user"),
@@ -45,20 +43,22 @@ public class LevelDAO {
 
     public void addLevel(Level level) throws Exception{
         String query = "INSERT INTO levels(level, experience, money) VALUES(?::integer, ?::integer, ?::integer);";
-        String[] queryAttr = {level.getLevel() + "", level.getExperience() + "", level.getExperience() + ""};
+        String[] queryAttr = {Integer.toString(level.getLevel()), Integer.toString(level.getExperience()),
+                Integer.toString(level.getExperience())};
 
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateLevel(Level level) throws Exception{
         String query = "UPDATE levels SET level=?, experience=?, money=? WHERE id_user=?;";
-        String[] queryAttr = {level.getLevel() + "", level.getExperience() + "", level.getMoney() + "", level.getUserID() + ""};
+        String[] queryAttr = {Integer.toString(level.getLevel()), Integer.toString(level.getExperience()),
+                Integer.toString(level.getMoney()), Integer.toString(level.getUserID())};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteLevel(int id) throws Exception {
         String query = "DELETE levels WHERE id=?;";
-        String[] queryAttr = {id + ""};
+        String[] queryAttr = {Integer.toString(id)};
         dbCon.updateSQL(query, queryAttr);
     }
 

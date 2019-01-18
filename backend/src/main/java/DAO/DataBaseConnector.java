@@ -22,10 +22,10 @@ public class DataBaseConnector {
             return conn;
         }
 
-        public ResultSet query(String sql, List<String> attr) throws Exception{
+        public ResultSet query(String sql, String[] attr) throws Exception{
             this.connect();
             PreparedStatement pstmt  = conn.prepareStatement(sql);
-            if(sql.split("\\?").length - 1 == attr.size()) {
+            if(sql.split("\\?").length - 1 == attr.length) {
                 throw new InvalidParameterException();
             }
             int i = 1;

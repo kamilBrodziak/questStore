@@ -47,8 +47,8 @@ public class QuestService {
         return componentUnlockDAO.getComponents("quests_completed", "id_quest");
     }
 
-    public void addQuest(String name, String description, int reward, int creatorId) throws Exception{
-        questDAO.addQuest(new Quest(0, name, description, reward, creatorId, 0));
+    public void addQuest(String name, String description, int reward, int creatorId, int questType) throws Exception{
+        questDAO.addQuest(new Quest(0, name, description, reward, creatorId, 0, questType));
     }
 
     public void updateQuest(int id, String name, String description, int reward, int modified_by) throws Exception{
