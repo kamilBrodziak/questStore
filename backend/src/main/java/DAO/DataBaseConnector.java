@@ -22,7 +22,7 @@ public class DataBaseConnector {
             return conn;
         }
 
-        public ResultSet query(String sql, String[] attr) throws Exception{
+        public ResultSet query(String sql, String[] attr) throws SQLException{
             this.connect();
             PreparedStatement pstmt  = conn.prepareStatement(sql);
             if(sql.split("\\?").length - 1 == attr.length) {
@@ -38,7 +38,7 @@ public class DataBaseConnector {
             return rs;
         }
 
-        public void updateSQL(String query, String[] queryAttr) throws Exception {
+        public void updateSQL(String query, String[] queryAttr) throws SQLException {
             connect();
             PreparedStatement pstmt = conn.prepareStatement(query);
             for(int i = 1; i <= queryAttr.length; ++i) {
