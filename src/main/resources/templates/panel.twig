@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="description" content="Quest Store for Codecool">
     <meta name="keywords" content="quests">
-    <meta name="author" content="Kamil Brodziak, Hubert Strumiński, Maciek Paluszkiewicz">
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="styles/navigation.css">
-    <link rel="stylesheet" type="text/css" href="styles/studentPanel.css">
-    <script src="scripts/cookies.js"></script>
+    <meta name="author" content="Kamil Brodziak, Hubert Struminski, Maciek Paluszkiewicz">
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/studentPanel.css">
+    <script src="../static/scripts/cookies.js" async></script>
 </head>
 <body>
 <div id="container">
@@ -22,12 +22,12 @@
                 </ul>
             </article>
             <div id="settings">
-                <a id="settings_anchor" href="accountSettings.html">Settings</a>
+                <a id="settings_anchor" href="../static/accountSettings.html">Settings</a>
             </div>
         </div>
         <div id="rightPart">
             <div id="stat">
-                <div id="coins"><img src="images/coins.png" alt=""><span id="coinsCount">{{ coins }}</span> Coins</div>
+                <div id="coins"><img src="../static/images/coins.png" alt=""><span id="coinsCount">{{ coins }}</span> Coins</div>
                 <div id="lvl">{{ level }} Lvl</div>
             </div>
             <div id="statistics">
@@ -36,17 +36,17 @@
                 </ul>
             </div>
             <div id="quest">
-                <a href="questManager.html">Quest Manager</a>
+                <a href="../static/questManager.html">Quest Manager</a>
             </div>
         </div>
     </div>
     <nav>
         <ul id="navOptions">
-            <li><a id="main_anchor" href="index.html">Main</a></li>
+            <li><a id="main_anchor" href="../static/index.html">Main</a></li>
             <li id="active"><a id="account_anchor" href="#">Account</a></li>
             <li><a id="quests_anchor" href="#">Quests</a></li>
-            <li><a id="contact_anchor" href="contact.html">Contact</a></li>
-            <li><a id="logout_anchor" href="index.html" onclick="return logout()">Logout</a></li>
+            <li><a id="contact_anchor" href="../static/contact.html">Contact</a></li>
+            <li><a id="logout_anchor" href="../static/index.html" onclick="return logout()">Logout</a></li>
         </ul>
     </nav>
 </div>

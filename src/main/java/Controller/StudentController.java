@@ -8,22 +8,15 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class Template implements HttpHandler {
+public class StudentController implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
         // get a template file
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("public_html/studentPanel.twig");
-
-
-        // create a model that will be passed to a template
-        JtwigModel model = JtwigModel.newModel();
-        model.with("coins", "Peter");
-        model.with("level", "Pater");
-
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/panel.twig");
 
         // render a template to a string
-        String response = template.render(model);
+        String response = template.render(getPanelLogin());
 
         // send the results to a the client
         httpExchange.sendResponseHeaders(200, response.length());
@@ -31,6 +24,14 @@ public class Template implements HttpHandler {
         os.write(response.getBytes());
         os.close();
 
+    }
+
+    private JtwigModel getPanelLogin() {
+        JtwigModel model = JtwigModel.newModel();
+        model.with("coins", "Peter");
+        model.with("level", "Pater");
+
+        return model;
     }
 
 }
