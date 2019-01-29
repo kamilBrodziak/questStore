@@ -15,7 +15,7 @@ public class QuestService {
         this.questDAO = new QuestDAO(dbConnector);
         this.levelDAO = new LevelDAO(dbConnector);
         this.componentUnlockDAO = new ComponentUnlockDAO(dbConnector);
-        this.ranksDAO = new RanksDAO();
+        this.ranksDAO = new RanksDAOPostgreSQL();
     }
 
     public boolean markQuest(int studentId, int questId) throws Exception{

@@ -15,7 +15,7 @@ public class AchievementService {
         this.achievementDAO = new AchievementDAO(dbConnector);
         this.levelDAO = new LevelDAO(dbConnector);
         this.componentUnlockDAO = new ComponentUnlockDAO(dbConnector);
-        this.ranksDAO = new RanksDAO();
+        this.ranksDAO = new RanksDAOPostgreSQL();
     }
 
     public boolean markAchievement(int studentId, int questId) throws Exception{
