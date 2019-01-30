@@ -17,7 +17,6 @@ public class TwigLoader {
         return response;
     }
 
-
     private JtwigModel createModel(Map<String, String> attr) {
         JtwigModel model = JtwigModel.newModel();
         for(String key: attr.keySet()) {

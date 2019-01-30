@@ -5,28 +5,38 @@ import Controller.helpers.TwigLoader;
 import DAO.*;
 import Model.Session;
 import com.sun.net.httpserver.HttpExchange;
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.HttpCookie;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.UUID;
 
 
 public class LoginService {
     private DataBaseConnector dbCon = new DataBaseConnector();
-    private SessionDAOPostgreSQL sessionDAOPostgreSQL = new SessionDAOPostgreSQL(dbCon);
+    private SessionDAO sessionDAO = new SessionDAOPostgreSQL(dbCon);
     private AdminDAO adminDAO = new AdminDAOPostgreSQL(dbCon);
     private MentorDAO mentorDAO = new MentorDAOPostgreSQL(dbCon);
     private StudentDAO studentDAO = new StudentDAOPostgreSQL(dbCon);
+    private LoginDAO loginDAO = new LoginDAOPostgreSQL(dbCon);
     private CookieHandler cookieHandler = new CookieHandler();
     private TwigLoader twigLoader = new TwigLoader();
 
-    private String login(HttpExchange httpExchange, String login) {
+    private void login(HttpExchange httpExchange, String login) throws IOException, SQLException{
+        if(cookieHandler.isNewSession(httpExchange)) {
+            sessionDAO.addSession(new Session(UUID.randomUUID().toString(), loginDAO.getLoginByLoginName(login).getId(),
+                    new Timestamp(System.currentTimeMillis())));
+            cookieHandler.createNewSession(httpExchange, Integer.toString(sessionDAO.getSessionCount()));
+        }
+        loadSession(httpExchange);
+    }
 
+    private void logout(HttpExchange httpExchange, String session) throws IOException, SQLException{
+        sessionDAO.deleteSession(session);
+        cookieHandler.deleteCookie(httpExchange);
     }
 
     public void loadSession(HttpExchange httpExchange) throws IOException, SQLException {
@@ -44,9 +54,9 @@ public class LoginService {
 
     private void redirectToPanel(HttpExchange httpExchange) throws IOException, SQLException {
         Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
-        String sessionId = cookie.get().getName();
+        String session = cookie.get().getName();
 
-        int loginID = sessionDAOPostgreSQL.getSessionByID(Integer.parseInt(sessionId)).getLoginID();
+        int loginID = sessionDAO.getSession(session).getLoginID();
 
         if(studentDAO.getStudentByLoginID(loginID) != null) {
             redirectToPage(httpExchange, "studentPanel.twig");
@@ -57,6 +67,5 @@ public class LoginService {
         } else {
             redirectToPage(httpExchange, "index.twig");
         }
-
     }
 }

@@ -1,19 +1,27 @@
 package Model;
 
-public class Session {
-    private int id;
-    private int loginID;
+import java.util.Date;
 
-    public Session(int id, int loginID) {
-        this.id = id;
+public class Session {
+    private String session;
+    private int loginID;
+    private Date date;
+
+    public Session(String session, int loginID, Date date) {
+        this.session = session;
         this.loginID = loginID;
+        this.date = date;
     }
 
-    public int getId() {
-        return id;
+    public String getSession() {
+        return session;
     }
 
     public int getLoginID() {
         return loginID;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

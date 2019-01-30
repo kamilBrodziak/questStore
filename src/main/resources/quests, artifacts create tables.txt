@@ -7,8 +7,9 @@ CREATE TABLE logins
 );
 
 CREATE TABLE loginSessions (
-	id SERIAL PRIMARY KEY,
-	login varchar(30) REFERENCES logins(login)
+	session varchar(36),
+	id_logins int REFERENCES logins(id) NOT NULL,
+	end_date timestamp NOT NULL
 );
 
 CREATE TABLE students

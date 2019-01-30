@@ -6,32 +6,39 @@ import Model.Session;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SessionDAOPostgreSQL {
+public class SessionDAOPostgreSQL implements SessionDAO {
     private DataBaseConnector dataBaseConnector;
 
     public SessionDAOPostgreSQL(DataBaseConnector dataBaseConnector){
         this.dataBaseConnector = dataBaseConnector;
     }
 
-    public void addSession(int loginID) throws SQLException {
-        String query = "INSERT INTO loginSessions (id_logins) VALUES (?);";
-        String[] queryAttr = {Integer.toString(loginID)};
+    public void addSession(Session session) throws SQLException {
+        String query = "INSERT INTO loginSessions (session, id_logins, end_date) VALUES (?);";
+        String[] queryAttr = {session.getSession(),
+                Integer.toString(session.getLoginID()), session.getDate().toString()};
         dataBaseConnector.updateSQL(query, queryAttr);
     }
 
-    public void deleteSession(int loginID) throws SQLException{
+    public void deleteSessionByLoginID(int loginID) throws SQLException{
         String query = "DELETE loginSessions WHERE id_logins=?;";
         String[] queryAttr = {Integer.toString(loginID)};
         dataBaseConnector.updateSQL(query, queryAttr);
     }
 
-    public Session getSessionByID(int loginID) throws SQLException {
-        String query = "SELECT * FROM loginSessions WHERE id=?";
+    public void deleteSession(String session) throws SQLException {
+        String query = "DELETE loginSessions WHERE session=?;";
+        String[] queryAttr = {"session"};
+        dataBaseConnector.updateSQL(query, queryAttr);
+    }
 
-        String[] queryAttr = {Integer.toString(loginID)};
+    public Session getSession(String session) throws SQLException {
+        String query = "SELECT * FROM loginSessions WHERE session=?";
+
+        String[] queryAttr = {session};
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
         if(rs.next()) {
-            return new Session(rs.getInt("id"), rs.getInt("id_logins"));
+            return new Session(rs.getString("session"), rs.getInt("id_logins"), rs.getTimestamp("end_time"));
         }
         return null;
     }
@@ -42,8 +49,18 @@ public class SessionDAOPostgreSQL {
         String[] queryAttr = {Integer.toString(loginID)};
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
         if(rs.next()) {
-            return new Session(rs.getInt("id"), rs.getInt("id_logins"));
+            return new Session(rs.getString("session"), rs.getInt("id_logins"), rs.getTimestamp("end_time"));
         }
         return null;
+    }
+
+    public int getSessionCount() throws SQLException {
+        String query = "SELECT COUNT(*) count FROM loginSessions WHERE id_logins=?";
+        String[] queryAttr = {};
+        ResultSet rs = dataBaseConnector.query(query, queryAttr);
+        if(rs.next()) {
+            rs.getInt("count");
+        }
+        return 0;
     }
 }

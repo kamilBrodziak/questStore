@@ -49,6 +49,14 @@ public class CookieHandler implements HttpHandler {
         return cookieHelper.findCookieByName(SESSION_COOKIE_NAME, cookies);
     }
 
+    public void deleteCookie(HttpExchange httpExchange) {
+        Optional<HttpCookie> sessionCookieOptional = getSessionIdCookie(httpExchange);
+        HttpCookie sessionCookie = sessionCookieOptional.get();
+        sessionCookie.setMaxAge(0);
+        sessionCookie.setPath("/");
+        sessionCookie.setValue("");
+    }
+
     private void sendResponse(HttpExchange httpExchange, String response) throws IOException {
         httpExchange.sendResponseHeaders(200, response.length());
         OutputStream os = httpExchange.getResponseBody();
