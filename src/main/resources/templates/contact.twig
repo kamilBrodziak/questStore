@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Quest Store</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Quest Store for Codecool">
+        <meta name="keywords" content="quests">
+        <meta name="author" content="Kamil Brodziak, Hubert Strumiński, Maciek Paluszkiewicz">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <link rel="stylesheet" type="text/css" href="styles/navigation.css">
+        <link rel="stylesheet" type="text/css" href="styles/contact.css">
+        <script src="scripts/cookies.js"></script>
+
+    </head>
+    <body>
+        <div id="container">
+            <main>
+                <section>
+                    <div id="form">
+                        <form method="post">
+                            <h1>Contact</h1>
+                            <label>Name:</label><span style="color: red;"><sup>*</sup></span>
+                            <br />
+                            <input type="text" id="name" name="name" placeholder="Enter your name" />
+                            <br /><br />
+                            <label>Email:</label><span style="color: red;"><sup>*</sup></span>
+                            <br />
+                            <input type="text" id="email" name="email" placeholder="Enter your emaIl" /><br />
+                            <br />
+                            <label>Message:</label><span style="color: red;"><sup>*</sup></span>
+                            <br />
+                            <textarea id="message" name="message" placeholder=" Write here.." rows="7"></textarea>
+                            <br /><br />
+                            <input type="submit" id="btnSend" value="Send" />
+
+                        </form>
+                    </div>
+                </section>
+            </main>
+            <nav>
+                <ul id="navOptions">
+                    <li><a id="main_anchor" href="index.html">Main</a></li>
+                    <li><a id="account_anchor" href="#">Account</a></li>
+                    <li><a id="quests_anchor" href="#">Quests</a></li>
+                    <li id="active"><a id="contact_anchor" href="contact.html">Contact</a></li>
+                    <li><a id="logout_anchor" href="index.html" onclick="return logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </body>
+</html>
