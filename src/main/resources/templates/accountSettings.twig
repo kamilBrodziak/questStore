@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Quest Store</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Quest Store for Codecool">
+    <meta name="keywords" content="quests">
+    <meta name="author" content="Kamil Brodziak, Hubert Struminski, Maciek Paluszkiewicz">
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/accountSettings.css">
+
+    <script src="../static/scripts/cookies.js" async></script>
+</head>
+<body>
+<div id="container">
+    <main>
+        <div id="settings">
+            <h1>Settings</h1>
+            <form action="">
+                Email:
+                <input type="text">
+                Name:
+                <input type="text" id="">
+                Password:
+                <span>show password</span>
+                <input id="password" type="password">
+                <input id="checkPassword" type="checkbox">
+                <input id="saveButton" type="button" value="Save">
+            </form>
+        </div>
+        <button id="backButton" onclick="history.back();"> Go back</button>
+
+    </main>
+    <nav>
+        <ul id="navOptions">
+            <li><a id="main_anchor" href="../static/index.html">Main</a></li>
+            <li id="active"><a id="account_anchor" href="#">Account</a></li>
+            <li><a id="quests_anchor" href="#">Quests</a></li>
+            <li><a id="contact_anchor" href="../static/contact.html">Contact</a></li>
+            <li><a id="logout_anchor" href="../static/index.html" onclick="return logout()">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<script src="../static/scripts/accountSettings.js"></script>
+</body>
+</html>

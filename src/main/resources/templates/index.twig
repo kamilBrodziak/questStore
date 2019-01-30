@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Quest Store</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Quest Store for Codecool">
+    <meta name="keywords" content="quests">
+    <meta name="author" content="Kamil Brodziak, Hubert Struminski, Maciek Paluszkiewicz">
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/navigation.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/login.css">
+
+    <script src="../static/scripts/cookies.js" async></script>
+    <script src="../static/scripts/login.js" async></script>
+</head>
+<body>
+<div id="container">
+    <main id="login">
+        <article id="welcomePage">
+            <h1>Welcome traveller!</h1>
+        </article>
+        <div id="loginSection">
+            <button id="loginButton">Already a fighter</button>
+            <div id="loginCase">
+                <form id="loginForm" onsubmit="return login()">
+                    Email*
+                    <input id="loginEmail" type="email" placeholder="example@email.com">
+                    Password*
+                    <input id="loginPassword" type="password" maxlength="32">
+                    <input id="submit_login_button" type="submit" value="Login">
+                    <p id="message"></p>
+                </form>
+            </div>
+            <button id="registerButton">Join our team</button>
+            <div id="registerCase">
+                <form action="#">
+                    First Name*
+                    <input type="text" placeholder="John">
+                    Last Name*
+                    <input type="text" placeholder="Bohn">
+                    Email*
+                    <input id="registerEmail" type="email" placeholder="example@email.com">
+                    Password*
+                    <input type="password" maxlength="32">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+
+    </main>
+    <nav>
+        <ul id="navOptions">
+            <li id="active"><a id="main_anchor" href="../static/index.html">Main</a></li>
+            <li class="disabled"><a id="account_anchor" href="#">Account</a></li>
+            <li class="disabled"><a id="quests_anchor" href="#">Quests</a></li>
+            <li><a id="contact_anchor" href="../static/contact.html">Contact</a></li>
+            <li class="disabled"><a id="logout_anchor" href="../static/index.html">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
