@@ -1,18 +1,19 @@
-package Controller;
-
+import Controller.Static;
+import Controller.StudentController;
 import com.sun.net.httpserver.HttpServer;
 
 import java.net.InetSocketAddress;
 
 
-public class Server {
+public class Application {
     public static void main(String[] args) throws Exception {
         // create a server on port 8000
         HttpServer server = HttpServer.create(new InetSocketAddress(8001), 0);
 
         // set routes
-        server.createContext("/public_html", new Static());
-        server.createContext("/example", new Template());
+        server.createContext("/static", new Static());
+        server.createContext("/static/studentPanel.html", new StudentController());
+//        server.createContext("/static/studentPanel.html?", new StudentController());
 
         server.setExecutor(null); // creates a default executor
 
