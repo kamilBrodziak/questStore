@@ -13,7 +13,7 @@ public class StudentController implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
 
         // get a template file
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/panel.twig");
+        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/studentPanel.twig");
 
         // render a template to a string
         String response = template.render(getPanelLogin());
