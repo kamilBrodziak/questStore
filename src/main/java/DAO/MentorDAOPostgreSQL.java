@@ -11,8 +11,8 @@ public class MentorDAOPostgreSQL implements MentorDAO{
 
     private DataBaseConnector dataBaseConnector;
 
-    public MentorDAOPostgreSQL(){
-        this.dataBaseConnector = new DataBaseConnector();
+    public MentorDAOPostgreSQL(DataBaseConnector dbCon){
+        this.dataBaseConnector = dbCon;
     }
 
     public void addMentor(Mentor mentor) throws SQLException{
@@ -55,6 +55,19 @@ public class MentorDAOPostgreSQL implements MentorDAO{
 
     public Mentor getMentor(int id) throws SQLException{
         String query = "SELECT name, surname, email, city, begin_work FROM mentors WHERE id = ?;";
+        String[] queryAttr = {Integer.toString(id)};
+
+        ResultSet rs = dataBaseConnector.query(query, queryAttr);
+
+        if(rs.next()){
+            return new Mentor(rs.getString("name"), rs.getString("surname"), rs.getString("email"),
+                    rs.getString("city"), rs.getString("begin_work"));
+        }
+        return null;
+    }
+
+    public Mentor getMentorByLoginID(int id) throws SQLException{
+        String query = "SELECT name, surname, email, city, begin_work FROM mentors WHERE id_logins = ?;";
         String[] queryAttr = {Integer.toString(id)};
 
         ResultSet rs = dataBaseConnector.query(query, queryAttr);

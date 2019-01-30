@@ -2,6 +2,7 @@ package DAO;
 
 import Model.Student;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentDAO {
@@ -10,4 +11,5 @@ public interface StudentDAO {
     void deleteStudent(int id) throws Exception;
     List<Student> getStudents() throws Exception;
     Student getStudent(int id) throws Exception;
+    Student getStudentByLoginID(int id) throws SQLException;
 }

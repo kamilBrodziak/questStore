@@ -1,9 +1,14 @@
 CREATE TABLE logins
 (
     id serial NOT NULL PRIMARY KEY,
-    login varchar(30) NOT NULL,
+    login varchar(30) NOT NULL UNIQUE,
     password varchar(30) NOT NULL
 
+);
+
+CREATE TABLE loginSessions (
+	id SERIAL PRIMARY KEY,
+	login varchar(30) REFERENCES logins(login)
 );
 
 CREATE TABLE students

@@ -6,11 +6,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDAOPostrgeSQL implements StudentDAO{
+public class StudentDAOPostgreSQL implements StudentDAO{
 
     private DataBaseConnector dbCon = null;
 
-    public StudentDAOPostrgeSQL(DataBaseConnector dbCon) {
+    public StudentDAOPostgreSQL(DataBaseConnector dbCon) {
         this.dbCon = dbCon;
     }
 
@@ -49,6 +49,18 @@ public class StudentDAOPostrgeSQL implements StudentDAO{
 
     public Student getStudent(int id) throws SQLException {
         String query = "SELECT * FROM students WHERE id=?;";
+        String[] queryAttr = {Integer.toString(id)};
+        ResultSet rs = dbCon.query(query, queryAttr);
+
+        if (rs.next()) {
+            return new Student(rs.getInt("id"), rs.getInt("logins_id"),
+                    rs.getString("name"), rs.getString("surname"), rs.getString("email"));
+        }
+        return null;
+    }
+
+    public Student getStudentByLoginID(int id) throws SQLException {
+        String query = "SELECT * FROM students WHERE id_logins=?;";
         String[] queryAttr = {Integer.toString(id)};
         ResultSet rs = dbCon.query(query, queryAttr);
 
