@@ -12,6 +12,7 @@ public class Server {
 
         // set routes
         server.createContext("/public_html", new Static());
+        server.createContext("/example", new Template());
 
         server.setExecutor(null); // creates a default executor
 
