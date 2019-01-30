@@ -14,7 +14,6 @@ import java.net.URL;
 public class Static implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-
         // get file path from url
         URI uri = httpExchange.getRequestURI();
         System.out.println("looking for: " + uri.getPath());

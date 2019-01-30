@@ -35,7 +35,6 @@ public class ContactController implements HttpHandler {
 
         if(method.equals("GET")){
             response = renderTemplate("contact.twig", null, null);
-            redirect(httpExchange, "/contact");
         }
 
         if(method.equals("POST")){
@@ -57,7 +56,7 @@ public class ContactController implements HttpHandler {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
             }
             response = renderTemplate("sentEmail.twig", null, null);
-            redirect(httpExchange, "/sentEmail");
+//            redirect(httpExchange, "/sentEmail");
         }
 
         httpExchange.sendResponseHeaders(200, 0);
@@ -102,7 +101,7 @@ public class ContactController implements HttpHandler {
 
     public void createEmailMessage(String emailSubject, String emailBody) throws AddressException,
             MessagingException {
-        String[] toEmails = { "queststore.codecool@gmail.com" };
+        String[] toEmails = { "queststore.codecool@gmail.com", "user.codecool@gmail.com" };
 
         mailSession = Session.getDefaultInstance(emailProperties, null);
         emailMessage = new MimeMessage(mailSession);
