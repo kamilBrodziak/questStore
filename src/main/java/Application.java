@@ -12,7 +12,7 @@ public class Application {
 
         // set routes
         server.createContext("/static", new Static());
-        server.createContext("/static/studentPanel.html", new StudentController());
+        server.createContext("/student", new StudentController());
 //        server.createContext("/static/studentPanel.html?", new StudentController());
 
         server.setExecutor(null); // creates a default executor
