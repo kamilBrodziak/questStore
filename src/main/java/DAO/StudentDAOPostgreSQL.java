@@ -15,7 +15,7 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public void addStudent(Student student) throws SQLException {
-        String query = "INSERT INTO students (name, surname, email, logins_id) VALUES (?, ?, ?, ?::integer);";
+        String query = "INSERT INTO students (name, surname, email, id_logins) VALUES (?, ?, ?, ?::integer);";
         String[] queryAttr = {student.getName(), student.getSurname(), student.getEmail(),
                 Integer.toString(student.getLoginsID())};
         dbCon.updateSQL(query, queryAttr);

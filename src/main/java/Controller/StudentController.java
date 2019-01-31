@@ -15,9 +15,9 @@ public class StudentController implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        Map<String, String> map = new HashMap<>();
-        map.put("coins", "Peter");
-        map.put("level", "Pater");
+        Map<String, Object> map = new HashMap<>();
+        map.put("coins", "127");
+        map.put("level", "69");
         try {
             menuService.loadPageWithMenu(httpExchange, "studentPanel", map, Accounts.STUDENT);
         } catch (SQLException e) {

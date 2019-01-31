@@ -15,7 +15,7 @@ public class QuestController implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         try {
             menuService.loadPageWithMenu(httpExchange, "studentQuests", map, Accounts.UNIVERSAL);

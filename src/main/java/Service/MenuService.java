@@ -24,7 +24,7 @@ public class MenuService {
     private TwigLoader twigLoader = new TwigLoader();
 
     public void loadPageWithMenu(HttpExchange httpExchange, String templateName,
-                                 Map<String, String> map, Accounts accountType) throws IOException, SQLException {
+                                 Map<String, Object> map, Accounts accountType) throws IOException, SQLException {
         String session = "";
         Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
         if(cookie.isPresent()) {

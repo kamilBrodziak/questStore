@@ -9,8 +9,10 @@ public class DataBaseConnector {
 
         public Connection connect() {
             String url = "jdbc:postgresql://localhost:5432/questStoreDB";
+//            String url = "jdbc:postgresql://localhost:5432/queststoredb";
             try {
                 this.conn = DriverManager.getConnection(url , "postgres", "123");
+//                this.conn = DriverManager.getConnection(url , "rageoverkill", "dupa123");
                 this.conn.setAutoCommit(false);
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
