@@ -1,5 +1,6 @@
 package Controller.helpers;
 
+import View.helpers.FormParser;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -7,8 +8,6 @@ import org.jtwig.JtwigTemplate;
 
 import java.io.*;
 import java.net.HttpCookie;
-import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.Map;
 
 import java.util.Properties;
@@ -38,12 +37,7 @@ public class ContactController implements HttpHandler {
         }
 
         if(method.equals("POST")){
-            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
-            BufferedReader br = new BufferedReader(isr);
-            String formData = br.readLine();
-
-            System.out.println(formData);
-            Map inputs = parseFormData(formData);
+            Map inputs = FormParser.parseFormData(httpExchange);
 
             String emailSubject = "Name: " + inputs.get("name") + ", from email: " + inputs.get("email");
             String emailBody = (String) inputs.get("message");
@@ -63,18 +57,6 @@ public class ContactController implements HttpHandler {
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
-    }
-
-    private static Map<String, String> parseFormData(String formData) throws UnsupportedEncodingException {
-        Map<String, String> map = new HashMap<>();
-        String[] pairs = formData.split("&");
-        for(String pair : pairs){
-            String[] keyValue = pair.split("=");
-            // We have to decode the value because it's urlencoded. see: https://en.wikipedia.org/wiki/POST_(HTTP)#Use_for_submitting_web_forms
-            String value = new URLDecoder().decode(keyValue[1], "UTF-8");
-            map.put(keyValue[0], value);
-        }
-        return map;
     }
 
     private String renderTemplate(String templateName, HttpCookie cookie, String cookieName){

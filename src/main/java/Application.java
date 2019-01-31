@@ -1,4 +1,5 @@
 import Controller.*;
+import Controller.AccountSettingsController;
 import com.sun.net.httpserver.HttpServer;
 
 import java.net.InetSocketAddress;
@@ -18,6 +19,7 @@ public class Application {
         server.createContext("/main", new MainController());
         server.createContext("/student/quests", new QuestController());
         server.createContext("/student/questManager", new QuestManager());
+        server.createContext("/student/accountSettings", new AccountSettingsController());
 
         server.setExecutor(null); // creates a default executor
 

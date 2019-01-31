@@ -34,11 +34,9 @@ public class SessionDAOPostgreSQL implements SessionDAO {
 
     public Session getSession(String session) throws SQLException {
         String query = "SELECT * FROM loginSessions WHERE session=?;";
-        System.out.println(session);
         String[] queryAttr = {session};
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
         if(rs.next()) {
-            System.out.println("no i ma");
             return new Session(rs.getString("session"), rs.getInt("id_logins"),
                     rs.getTimestamp("end_date"));
         }

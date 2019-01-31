@@ -34,7 +34,6 @@ public class DataBaseConnector {
             for(String s: attr) {
                 pstmt.setString(i++, s);
             }
-            System.out.println(pstmt);
 
             ResultSet rs = pstmt.executeQuery();
 //            pstmt.close();
