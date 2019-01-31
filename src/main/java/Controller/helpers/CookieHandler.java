@@ -17,9 +17,8 @@ public class CookieHandler implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
 
         Optional<HttpCookie> cookie = getSessionIdCookie(httpExchange);
-
         boolean isNewSession;
-        if (cookie.isPresent()) {  // Cookie already exists
+        if (cookie.isPresent() || cookie.get().getValue().replaceAll("\\\"", "").equals("null")) {  // Cookie already exists
             isNewSession = false;
         } else { // Create a new cookie
             isNewSession = true;
@@ -33,10 +32,12 @@ public class CookieHandler implements HttpHandler {
     }
 
     public boolean isNewSession(HttpExchange httpExchange) {
-        return !getSessionIdCookie(httpExchange).isPresent();
+        Optional<HttpCookie> cookie = getSessionIdCookie(httpExchange);
+        return !cookie.isPresent() ||
+                cookie.get().getValue().replaceAll("\\\"", "").equals("null");
     }
 
-    public void createNewSession(HttpExchange httpExchange, String session) {
+    public void createNewSession(HttpExchange httpExchange, String session){
         boolean isNewSession = true;
         String sessionId = session; // This isn't a good way to create sessionId. Find a better one!
         Optional<HttpCookie> cookie = Optional.of(new HttpCookie(SESSION_COOKIE_NAME, sessionId));
@@ -49,12 +50,13 @@ public class CookieHandler implements HttpHandler {
         return cookieHelper.findCookieByName(SESSION_COOKIE_NAME, cookies);
     }
 
-    public void deleteCookie(HttpExchange httpExchange) {
+    public void deleteCookie(HttpExchange httpExchange) throws IOException{
         Optional<HttpCookie> sessionCookieOptional = getSessionIdCookie(httpExchange);
         HttpCookie sessionCookie = sessionCookieOptional.get();
         sessionCookie.setMaxAge(0);
         sessionCookie.setPath("/");
-        sessionCookie.setValue("");
+        sessionCookie.setValue(null);
+        httpExchange.getResponseHeaders().add("Set-Cookie", sessionCookie.toString());
     }
 
     private void sendResponse(HttpExchange httpExchange, String response) throws IOException {

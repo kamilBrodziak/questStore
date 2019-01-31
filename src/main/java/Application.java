@@ -1,3 +1,5 @@
+import Controller.LoginController;
+import Controller.LogoutController;
 import Controller.Static;
 import Controller.StudentController;
 import com.sun.net.httpserver.HttpServer;
@@ -13,6 +15,8 @@ public class Application {
         // set routes
         server.createContext("/static", new Static());
         server.createContext("/static/studentPanel.html", new StudentController());
+        server.createContext("/static/index.html", new LoginController());
+        server.createContext("/static/logout.html", new LogoutController());
 //        server.createContext("/static/studentPanel.html?", new StudentController());
 
         server.setExecutor(null); // creates a default executor

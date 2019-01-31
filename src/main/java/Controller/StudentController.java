@@ -1,5 +1,6 @@
 package Controller;
 
+import Controller.helpers.TwigLoader;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -7,22 +8,20 @@ import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentController implements HttpHandler {
+    private TwigLoader twigLoader = new TwigLoader();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        // get a template file
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/studentPanel.twig");
-
-        // render a template to a string
-        String response = template.render(getPanelLogin());
-
+        Map<String, String> map = new HashMap<>();
+        map.put("coins", "Peter");
+        map.put("level", "Pater");
         // send the results to a the client
-        httpExchange.sendResponseHeaders(200, response.getBytes().length);
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+        String response = twigLoader.loadTemplate(httpExchange, "studentPanel.twig", map);
+        twigLoader.sendResponse(httpExchange, response);
 
     }
 
