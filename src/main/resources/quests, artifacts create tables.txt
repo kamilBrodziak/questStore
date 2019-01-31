@@ -21,6 +21,9 @@ CREATE TABLE students
     email varchar(45) NOT NULL
 );
 
+INSERT INTO logins(login, password) VALUES ('student@cc.cc', '123');
+INSERT INTO students(id_logins, name, surname, email) VALUES (1, 'Kamil', 'Brodziak', 'student@cc.cc');
+
 CREATE TABLE mentors
 (
     id serial NOT NULL PRIMARY KEY,

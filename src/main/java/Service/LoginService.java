@@ -3,9 +3,11 @@ package Service;
 import Controller.helpers.CookieHandler;
 import Controller.helpers.TwigLoader;
 import DAO.*;
+import Model.Login;
 import Model.Session;
 import com.sun.net.httpserver.HttpExchange;
 
+import javax.xml.ws.http.HTTPBinding;
 import java.io.IOException;
 import java.net.HttpCookie;
 import java.sql.SQLException;
@@ -25,47 +27,59 @@ public class LoginService {
     private CookieHandler cookieHandler = new CookieHandler();
     private TwigLoader twigLoader = new TwigLoader();
 
-    private void login(HttpExchange httpExchange, String login) throws IOException, SQLException{
-        if(cookieHandler.isNewSession(httpExchange)) {
-            sessionDAO.addSession(new Session(UUID.randomUUID().toString(), loginDAO.getLoginByLoginName(login).getId(),
-                    new Timestamp(System.currentTimeMillis())));
-            cookieHandler.createNewSession(httpExchange, Integer.toString(sessionDAO.getSessionCount()));
+    public boolean login(HttpExchange httpExchange, Login login) throws IOException, SQLException{
+
+        if(login != null && cookieHandler.isNewSession(httpExchange)) {
+            Login correctLogin = loginDAO.getLoginByLoginName(login.getLogin());
+            if(correctLogin!= null && correctLogin.getPassword().equals(login.getPassword())) {
+                Session session = new Session(UUID.randomUUID().toString(),
+                        loginDAO.getLoginByLoginName(login.getLogin()).getId(),
+                        new Timestamp(System.currentTimeMillis()));
+                sessionDAO.addSession(session);
+                cookieHandler.createNewSession(httpExchange, session.getSession());
+                redirectToPanel(httpExchange, session.getSession());
+                return true;
+            }
         }
-        loadSession(httpExchange);
+        loadPage(httpExchange, "index.twig");
+        return false;
     }
 
-    private void logout(HttpExchange httpExchange, String session) throws IOException, SQLException{
+    public void logout(HttpExchange httpExchange, String session) throws IOException, SQLException{
         sessionDAO.deleteSession(session);
         cookieHandler.deleteCookie(httpExchange);
+        redirectToPage(httpExchange, "index.html");
     }
 
     public void loadSession(HttpExchange httpExchange) throws IOException, SQLException {
         if(cookieHandler.isNewSession(httpExchange)) {
-            redirectToPage(httpExchange, "index.twig");
+            loadPage(httpExchange, "index.twig");
         } else {
-            redirectToPanel(httpExchange);
+            Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
+            String session = cookie.get().getValue().replaceAll("\\\"", "");
+            redirectToPanel(httpExchange, session);
         }
     }
 
-    private void redirectToPage(HttpExchange httpExchange, String template) throws IOException {
+    private void redirectToPage(HttpExchange httpExchange, String page) throws IOException {
+        twigLoader.redirectToPage(httpExchange, page);
+    }
+
+    private void loadPage(HttpExchange httpExchange, String template) throws IOException{
         String response = twigLoader.loadTemplate(httpExchange, template, new HashMap<>());
         twigLoader.sendResponse(httpExchange, response);
     }
 
-    private void redirectToPanel(HttpExchange httpExchange) throws IOException, SQLException {
-        Optional<HttpCookie> cookie = cookieHandler.getSessionIdCookie(httpExchange);
-        String session = cookie.get().getName();
-
+    private void redirectToPanel(HttpExchange httpExchange, String session) throws IOException, SQLException {
         int loginID = sessionDAO.getSession(session).getLoginID();
-
         if(studentDAO.getStudentByLoginID(loginID) != null) {
-            redirectToPage(httpExchange, "studentPanel.twig");
+            redirectToPage(httpExchange, "studentPanel.html");
         } else if(mentorDAO.getMentorByLoginID(loginID) != null) {
             redirectToPage(httpExchange, "mentorPanel.twig");
         } else if (adminDAO.getAdminByLoginID(loginID) != null){
             redirectToPage(httpExchange, "adminPanel.twig");
         } else {
-            redirectToPage(httpExchange, "index.twig");
+            redirectToPage(httpExchange, "index.html");
         }
     }
 }
