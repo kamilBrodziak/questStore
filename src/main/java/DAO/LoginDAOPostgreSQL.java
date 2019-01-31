@@ -22,21 +22,21 @@ public class LoginDAOPostgreSQL implements LoginDAO{
     }
 
     public void editLogin(Login login) throws SQLException{
-        String query = "UPDATE logins SET login = ?, password = ? WHERE id = ?;";
+        String query = "UPDATE logins SET login=?, password = ? WHERE id=?::integer;";
         String[] queryAttr = {login.getLogin(), login.getPassword(), Integer.toString(login.getId())};
 
         dataBaseConnector.updateSQL(query, queryAttr);
     }
 
     public void updatePassword(Login login) throws SQLException {
-        String query = "UPDATE logins SET password = ? WHERE id = ?;";
+        String query = "UPDATE logins SET password = ? WHERE id = ?::integer;";
         String[] queryAttr = {login.getPassword(), Integer.toString(login.getId())};
 
         dataBaseConnector.updateSQL(query, queryAttr);
     }
 
     public void deleteLogin(int id) throws SQLException{
-        String query = "DELETE FROM logins WHERE id = ?";
+        String query = "DELETE FROM logins WHERE id = ?::integer";
         String[] queryAttr = {Integer.toString(id)};
 
         dataBaseConnector.updateSQL(query, queryAttr);
@@ -57,7 +57,7 @@ public class LoginDAOPostgreSQL implements LoginDAO{
     }
 
     public Login getLogin(int id) throws SQLException{
-        String query = "SELECT * FROM logins WHERE id = ?;";
+        String query = "SELECT * FROM logins WHERE id = ?::integer;";
         String[] queryAttr = {Integer.toString(id)};
 
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
@@ -82,12 +82,12 @@ public class LoginDAOPostgreSQL implements LoginDAO{
         return null;
     }
 
-    public boolean checkIfPasswordIsCorrect(String passwordFromInput) throws SQLException {
-        String query = "SELECT password FROM logins WHERE id=?";
-        String[] queryAttr = {passwordFromInput};
+    public boolean checkIfPasswordIsCorrect(String login, String passwordFromInput) throws SQLException {
+        String query = "SELECT password FROM logins WHERE login=?;";
+        String[] queryAttr = {login};
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
 
-        while(rs.next()){
+        if(rs.next()){
             String passwordFromDb = rs.getString("password");
 
             if(passwordFromDb.equals(passwordFromInput)){

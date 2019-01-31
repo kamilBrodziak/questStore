@@ -1,5 +1,8 @@
-package Controller.helpers;
+package Controller;
 
+import Controller.helpers.CookieHelper;
+import View.helpers.FormParser;
+import Controller.helpers.TwigLoader;
 import DAO.DataBaseConnector;
 import DAO.LoginDAOPostgreSQL;
 import DAO.SessionDAOPostgreSQL;
@@ -14,7 +17,6 @@ import org.jtwig.JtwigTemplate;
 
 import java.io.*;
 import java.net.HttpCookie;
-import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -25,6 +27,7 @@ public class AccountSettingsController implements HttpHandler {
     CookieHelper cookieHelper;
     StudentDAOPostgreSQL studentDAOPostgreSQL;
     LoginDAOPostgreSQL loginDAOPostgreSQL;
+    TwigLoader twigLoader;
 
     public AccountSettingsController(){
         this.dataBaseConnector = new DataBaseConnector();
@@ -32,6 +35,7 @@ public class AccountSettingsController implements HttpHandler {
         this.cookieHelper = new CookieHelper();
         this.studentDAOPostgreSQL = new StudentDAOPostgreSQL(dataBaseConnector);
         this.loginDAOPostgreSQL = new LoginDAOPostgreSQL(dataBaseConnector);
+        this.twigLoader = new TwigLoader();
     }
 
     @Override
@@ -47,26 +51,23 @@ public class AccountSettingsController implements HttpHandler {
 
         if(method.equals("GET")){
             try{
-                Session session = sessionDAOPostgreSQL.getSession(cookie.get().getValue());
+                Session session = sessionDAOPostgreSQL.getSession(cookie.get().getValue().replaceAll("\\\"", ""));
                 login = loginDAOPostgreSQL.getLogin(session.getLoginID());
-                student = studentDAOPostgreSQL.getStudent(session.getLoginID());
+                student = studentDAOPostgreSQL.getStudentByLoginID(session.getLoginID());
             }catch(SQLException e){
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
             }
-
             List<String> nameList = Arrays.asList("email", "password");
-            List<String> gettersList = Arrays.asList(student.getEmail(), login.getPassword());
 
+            List<String> gettersList = Arrays.asList(student.getEmail(), login.getPassword());
             response = renderTemplate(nameList, gettersList, "accountSettings.twig");
+
         }
 
         if(method.equals("POST")){
-            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
-            BufferedReader br = new BufferedReader(isr);
-            String formData = br.readLine();
 
-            System.out.println(formData);
-            Map inputs = parseFormData(formData);
+
+            Map inputs = FormParser.parseFormData(httpExchange);
 
             String email = String.valueOf(inputs.get("email"));
             String oldPassword = String.valueOf(inputs.get("oldPassword"));
@@ -75,39 +76,31 @@ public class AccountSettingsController implements HttpHandler {
 
             try {
                 if(isPasswordCorrectAndEmailNotExistsInDb(email, oldPassword, newPassword, confirmPassword)){
-                    Session session = sessionDAOPostgreSQL.getSession(cookie.get().getValue());
+                    Session session = sessionDAOPostgreSQL.getSession(cookie.get().getValue().replaceAll("\\\"", ""));
                     login = loginDAOPostgreSQL.getLogin(session.getLoginID());
-                    student = studentDAOPostgreSQL.getStudent(session.getLoginID());
-
+                    student = studentDAOPostgreSQL.getStudentByLoginID(session.getLoginID());
                     loginDAOPostgreSQL.updatePassword(login);
                     studentDAOPostgreSQL.updateEmail(student);
 
-                    response = renderTemplate(null, null, "accountSettings-change.twig");
+                    response = twigLoader.loadTemplate(httpExchange, "accountSettingsChange", new HashMap<>());
+                    login.setPassword(newPassword);
+                    loginDAOPostgreSQL.editLogin(login);
+
+                    student.setEmail(email);
+                    studentDAOPostgreSQL.updateStudent(student);
+
                 }else{
-                    response = renderTemplate(null, null, "accountSettings-incorrect.twig");
+                    response = twigLoader.loadTemplate(httpExchange, "accountSettingsIncorrect", new HashMap<>());
                 }
             } catch (SQLException e) {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
             }
         }
 
-        httpExchange.sendResponseHeaders(200, response.length());
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+        twigLoader.sendResponse(httpExchange, response);
     }
 
-    private static Map<String, String> parseFormData(String formData) throws UnsupportedEncodingException {
-        Map<String, String> map = new HashMap<>();
-        String[] pairs = formData.split("&");
-        for(String pair : pairs){
-            String[] keyValue = pair.split("=");
-            // We have to decode the value because it's urlencoded. see: https://en.wikipedia.org/wiki/POST_(HTTP)#Use_for_submitting_web_forms
-            String value = new URLDecoder().decode(keyValue[1], "UTF-8");
-            map.put(keyValue[0], value);
-        }
-        return map;
-    }
+
 
     private Optional<HttpCookie> getSessionIdCookie(HttpExchange httpExchange){
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
@@ -126,7 +119,8 @@ public class AccountSettingsController implements HttpHandler {
     }
 
     private boolean isPasswordCorrectAndEmailNotExistsInDb(String email, String oldPassword, String newPassword, String confirmPassword) throws SQLException {
-        return studentDAOPostgreSQL.checkIfEmailExists(email) && loginDAOPostgreSQL.checkIfPasswordIsCorrect(oldPassword)
-                && newPassword.equals(confirmPassword);
+        return studentDAOPostgreSQL.checkIfEmailExists(email) &&
+                loginDAOPostgreSQL.checkIfPasswordIsCorrect(email, oldPassword) &&
+                newPassword.equals(confirmPassword);
     }
 }

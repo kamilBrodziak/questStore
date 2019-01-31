@@ -22,20 +22,20 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public void updateStudent(Student student) throws SQLException{
-        String query = "UPDATE students SET name = ?, surname = ?, email = ?, id_logins = ? WHERE id = ?";
+        String query = "UPDATE students SET name = ?, surname = ?, email = ?, id_logins = ?::integer WHERE id = ?::integer";
         String[] queryAttr = {student.getName(), student.getSurname(), student.getEmail(),
-                Integer.toString(student.getLoginsID())};
+                Integer.toString(student.getLoginsID()), Integer.toString(student.getId())};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void updateEmail(Student student) throws SQLException {
-        String query = "UPDATE students SET email = ? WHERE id = ?";
+        String query = "UPDATE students SET email = ? WHERE id = ?::integer";
         String[] queryAttr = {student.getEmail(), Integer.toString(student.getId())};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteStudent(int id) throws SQLException{
-        String query = "DELETE FROM students WHERE id = ?";
+        String query = "DELETE FROM students WHERE id = ?::integer";
         String[] queryAttr = {Integer.toString(id)};
         dbCon.updateSQL(query, queryAttr);
     }
@@ -79,16 +79,16 @@ public class StudentDAOPostgreSQL implements StudentDAO{
 
     public boolean checkIfEmailExists(String newEmail) throws SQLException {
         String query = "SELECT email FROM students;";
-        String[] queryAttr = {newEmail};
+        String[] queryAttr = {};
         ResultSet rs = dbCon.query(query, queryAttr);
-
+        int i = 0;
         while(rs.next()){
             String existEmail = rs.getString("email");
 
             if(existEmail.equalsIgnoreCase(newEmail)){
-                return true;
+                i++;
             }
         }
-        return false;
+        return i < 2;
     }
 }

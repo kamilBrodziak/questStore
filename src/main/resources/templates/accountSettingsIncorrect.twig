@@ -10,25 +10,14 @@
         <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
         <link rel="stylesheet" type="text/css" href="../static/styles/navigation.css">
         <link rel="stylesheet" type="text/css" href="../static/styles/accountSettings.css">
-        <script src="../static/scripts/accountSettings.js"></script>
+        <script src="../static/scripts/accountSettings.js" async></script>
     </head>
     <body>
         <div id="container">
             <main>
                 <div id="settings">
                     <h1>Settings</h1>
-                    <form method="POST">
-                        Email:
-                        <input type="text" id="email" name="email" value="{{ email }}">
-                        Old password:
-                        <input type="password" id="oldPassword" name="oldPassword" value="{{ password }}">
-                        <br/><br/><br/>
-                        New password:
-                        <input id="newPassword" name="newPassword" type="password">
-                        Confirm password:
-                        <input id="confirmPassword" name="confirmPassword" type="password">
-                        <input id="saveButton" type="submit" value="Save">
-                    </form>
+                    <h1 class="update">Incorrect password.</h1>
                 </div>
                 <button id="backButton" onclick="history.back();"> Go back</button>
 
