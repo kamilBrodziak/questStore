@@ -39,8 +39,10 @@ public class CookieHandler implements HttpHandler {
 
     public void createNewSession(HttpExchange httpExchange, String session){
         boolean isNewSession = true;
-        String sessionId = session; // This isn't a good way to create sessionId. Find a better one!
+        String sessionId = session;
         Optional<HttpCookie> cookie = Optional.of(new HttpCookie(SESSION_COOKIE_NAME, sessionId));
+        cookie.get().setMaxAge(-1);
+        System.out.println(cookie.get().toString());
         httpExchange.getResponseHeaders().add("Set-Cookie", cookie.get().toString());
     }
 

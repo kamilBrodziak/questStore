@@ -1,6 +1,5 @@
 package Controller;
 
-import Controller.helpers.TwigLoader;
 import Model.Login;
 import Service.LoginService;
 import View.LoginForm;
@@ -9,7 +8,6 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 
 public class LoginController implements HttpHandler {
     LoginService loginService = new LoginService();

@@ -10,19 +10,17 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StudentController implements HttpHandler {
+public class ContactController implements HttpHandler {
     private MenuService menuService = new MenuService();
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
         Map<String, String> map = new HashMap<>();
-        map.put("coins", "Peter");
-        map.put("level", "Pater");
+
         try {
-            menuService.loadPageWithMenu(httpExchange, "studentPanel", map, Accounts.STUDENT);
+            menuService.loadPageWithMenu(httpExchange, "contact", map, Accounts.UNIVERSAL);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }

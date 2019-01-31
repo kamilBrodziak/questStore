@@ -26,7 +26,6 @@ public class DataBaseConnector {
         public ResultSet query(String sql, String[] attr) throws SQLException{
             this.connect();
             PreparedStatement pstmt  = conn.prepareStatement(sql);
-
             if(sql.split("\\?").length - 1 != attr.length) {
                 throw new InvalidParameterException();
             }
@@ -35,6 +34,7 @@ public class DataBaseConnector {
             for(String s: attr) {
                 pstmt.setString(i++, s);
             }
+            System.out.println(pstmt);
 
             ResultSet rs = pstmt.executeQuery();
 //            pstmt.close();
