@@ -31,4 +31,9 @@ public class TwigLoader {
         os.write(response.getBytes());
         os.close();
     }
+
+    public void redirectToPage(HttpExchange httpExchange, String page) throws IOException {
+        httpExchange.getResponseHeaders().set("Location", page);
+        httpExchange.sendResponseHeaders(302, page.getBytes().length);
+    }
 }

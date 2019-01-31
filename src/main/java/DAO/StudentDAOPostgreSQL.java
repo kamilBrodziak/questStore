@@ -22,14 +22,14 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public void updateStudent(Student student) throws SQLException{
-        String query = "UPDATE student SET name = ?, surname = ?, email = ?, logins_id = ? WHERE id = ?";
+        String query = "UPDATE student SET name = ?, surname = ?, email = ?, logins_id=?::integer WHERE id=?::integer";
         String[] queryAttr = {student.getName(), student.getSurname(), student.getEmail(),
                 Integer.toString(student.getLoginsID())};
         dbCon.updateSQL(query, queryAttr);
     }
 
     public void deleteStudent(int id) throws SQLException{
-        String query = "DELETE FROM students WHERE id = ?";
+        String query = "DELETE FROM students WHERE id=?::integer";
         String[] queryAttr = {Integer.toString(id)};
         dbCon.updateSQL(query, queryAttr);
     }
@@ -48,7 +48,7 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public Student getStudent(int id) throws SQLException {
-        String query = "SELECT * FROM students WHERE id=?;";
+        String query = "SELECT * FROM students WHERE id=?::integer;";
         String[] queryAttr = {Integer.toString(id)};
         ResultSet rs = dbCon.query(query, queryAttr);
 
@@ -60,12 +60,12 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public Student getStudentByLoginID(int id) throws SQLException {
-        String query = "SELECT * FROM students WHERE id_logins=?;";
+        String query = "SELECT * FROM students WHERE id_logins=?::integer;";
         String[] queryAttr = {Integer.toString(id)};
         ResultSet rs = dbCon.query(query, queryAttr);
 
         if (rs.next()) {
-            return new Student(rs.getInt("id"), rs.getInt("logins_id"),
+            return new Student(rs.getInt("id"), rs.getInt("id_logins"),
                     rs.getString("name"), rs.getString("surname"), rs.getString("email"));
         }
         return null;

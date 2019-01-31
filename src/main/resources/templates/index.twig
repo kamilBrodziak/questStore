@@ -23,11 +23,11 @@
         <div id="loginSection">
             <button id="loginButton">Already a fighter</button>
             <div id="loginCase">
-                <form id="loginForm" onsubmit="return login()">
+                    <form id="loginForm" method="POST" onsubmit="return login()">
                     Email*
-                    <input id="loginEmail" type="email" placeholder="example@email.com">
+                    <input id="loginEmail" name="login" type="email" placeholder="example@email.com">
                     Password*
-                    <input id="loginPassword" type="password" maxlength="32">
+                    <input id="loginPassword" name="password" type="password" maxlength="32">
                     <input id="submit_login_button" type="submit" value="Login">
                     <p id="message"></p>
                 </form>
@@ -55,7 +55,7 @@
             <li class="disabled"><a id="account_anchor" href="#">Account</a></li>
             <li class="disabled"><a id="quests_anchor" href="#">Quests</a></li>
             <li><a id="contact_anchor" href="../static/contact.html">Contact</a></li>
-            <li class="disabled"><a id="logout_anchor" href="../static/index.html">Logout</a></li>
+            <li class="disabled"><a id="logout_anchor" href="../static/logout.html">Logout</a></li>
         </ul>
     </nav>
 </div>

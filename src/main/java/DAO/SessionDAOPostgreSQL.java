@@ -14,7 +14,7 @@ public class SessionDAOPostgreSQL implements SessionDAO {
     }
 
     public void addSession(Session session) throws SQLException {
-        String query = "INSERT INTO loginSessions (session, id_logins, end_date) VALUES (?);";
+        String query = "INSERT INTO loginSessions (session, id_logins, end_date) VALUES (?, ?::int, ?::timestamp);";
         String[] queryAttr = {session.getSession(),
                 Integer.toString(session.getLoginID()), session.getDate().toString()};
         dataBaseConnector.updateSQL(query, queryAttr);
@@ -27,18 +27,20 @@ public class SessionDAOPostgreSQL implements SessionDAO {
     }
 
     public void deleteSession(String session) throws SQLException {
-        String query = "DELETE loginSessions WHERE session=?;";
-        String[] queryAttr = {"session"};
+        String query = "DELETE FROM loginSessions WHERE session=?;";
+        String[] queryAttr = {session};
         dataBaseConnector.updateSQL(query, queryAttr);
     }
 
     public Session getSession(String session) throws SQLException {
-        String query = "SELECT * FROM loginSessions WHERE session=?";
-
+        String query = "SELECT * FROM loginSessions WHERE session=?;";
+        System.out.println(session);
         String[] queryAttr = {session};
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
         if(rs.next()) {
-            return new Session(rs.getString("session"), rs.getInt("id_logins"), rs.getTimestamp("end_time"));
+            System.out.println("no i ma");
+            return new Session(rs.getString("session"), rs.getInt("id_logins"),
+                    rs.getTimestamp("end_date"));
         }
         return null;
     }
@@ -55,7 +57,7 @@ public class SessionDAOPostgreSQL implements SessionDAO {
     }
 
     public int getSessionCount() throws SQLException {
-        String query = "SELECT COUNT(*) count FROM loginSessions WHERE id_logins=?";
+        String query = "SELECT COUNT(*) count FROM loginSessions";
         String[] queryAttr = {};
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
         if(rs.next()) {
