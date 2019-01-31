@@ -31,6 +31,7 @@ public class MainController implements HttpHandler {
                             "Windu Nelvaanian",
                             "Darth Aqualish."};
 
+
         Map<String, Object> map = new HashMap<>();
         map.put("news", newsList);
         map.put("last_achieved", lastAchieved);
