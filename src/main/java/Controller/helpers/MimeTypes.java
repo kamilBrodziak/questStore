@@ -119,6 +119,7 @@ public class MimeTypes {
     public static final String MIME_VIDEO_X_MS_WMV        = "video/x-ms-wmv";
     public static final String MIME_VIDEO_X_SGI_MOVIE     = "video/x-sgi-movie";
     public static final String MIME_X_CONFERENCE_X_COOLTALK   = "x-conference/x-cooltalk";
+    public static final String MIME_FONT_WOFF = "font/woff";
 
     public static HashMap<String, String> mimeTypeMapping;
 
@@ -299,6 +300,7 @@ public class MimeTypes {
                 put1("dll", MIME_APPLICATION_OCTET_STREAM);
                 put1("class", MIME_APPLICATION_OCTET_STREAM);
                 put1("jar", MIME_APPLICATION_JAVA_ARCHIVE);
+                put1("woff", MIME_FONT_WOFF);
             }};
     }
 }
