@@ -28,6 +28,13 @@ public class LoginDAOPostgreSQL implements LoginDAO{
         dataBaseConnector.updateSQL(query, queryAttr);
     }
 
+    public void updatePassword(Login login) throws SQLException {
+        String query = "UPDATE logins SET password = ? WHERE id = ?;";
+        String[] queryAttr = {login.getPassword(), Integer.toString(login.getId())};
+
+        dataBaseConnector.updateSQL(query, queryAttr);
+    }
+
     public void deleteLogin(int id) throws SQLException{
         String query = "DELETE FROM logins WHERE id = ?";
         String[] queryAttr = {Integer.toString(id)};
@@ -72,5 +79,20 @@ public class LoginDAOPostgreSQL implements LoginDAO{
 
         }
         return null;
+    }
+
+    public boolean checkIfPasswordIsCorrect(String passwordFromInput) throws SQLException {
+        String query = "SELECT password FROM logins WHERE id=?";
+        String[] queryAttr = {passwordFromInput};
+        ResultSet rs = dataBaseConnector.query(query, queryAttr);
+
+        while(rs.next()){
+            String passwordFromDb = rs.getString("password");
+
+            if(passwordFromDb.equals(passwordFromInput)){
+                return true;
+            }
+        }
+        return false;
     }
 }

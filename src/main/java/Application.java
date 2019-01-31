@@ -1,6 +1,7 @@
 import Controller.Static;
 import Controller.StudentController;
 import Controller.helpers.ContactController;
+import Controller.helpers.AccountSettingsController;
 import com.sun.net.httpserver.HttpServer;
 
 import java.net.InetSocketAddress;
@@ -15,6 +16,7 @@ public class Application {
         server.createContext("/static", new Static());
         server.createContext("/static/studentPanel.html", new StudentController());
         server.createContext("/contact", new ContactController());
+        server.createContext("/accountSettings", new AccountSettingsController());
 //        server.createContext("/static/studentPanel.html?", new StudentController());
 
         server.setExecutor(null); // creates a default executor

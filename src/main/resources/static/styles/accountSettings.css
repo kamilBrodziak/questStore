@@ -88,3 +88,8 @@ h1 {
 #backButton:active {
     margin-top: 1.2%;
 }
+.update
+{
+    color: red;
+    margin-top: 35%;
+}

@@ -22,9 +22,15 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public void updateStudent(Student student) throws SQLException{
-        String query = "UPDATE student SET name = ?, surname = ?, email = ?, logins_id = ? WHERE id = ?";
+        String query = "UPDATE students SET name = ?, surname = ?, email = ?, logins_id = ? WHERE id = ?";
         String[] queryAttr = {student.getName(), student.getSurname(), student.getEmail(),
                 Integer.toString(student.getLoginsID())};
+        dbCon.updateSQL(query, queryAttr);
+    }
+
+    public void updateEmail(Student student) throws SQLException {
+        String query = "UPDATE students SET email = ? WHERE id = ?";
+        String[] queryAttr = {student.getEmail(), Integer.toString(student.getId())};
         dbCon.updateSQL(query, queryAttr);
     }
 
@@ -69,5 +75,20 @@ public class StudentDAOPostgreSQL implements StudentDAO{
                     rs.getString("name"), rs.getString("surname"), rs.getString("email"));
         }
         return null;
+    }
+
+    public boolean checkIfEmailExists(String newEmail) throws SQLException {
+        String query = "SELECT email FROM students;";
+        String[] queryAttr = {newEmail};
+        ResultSet rs = dbCon.query(query, queryAttr);
+
+        while(rs.next()){
+            String existEmail = rs.getString("email");
+
+            if(existEmail.equalsIgnoreCase(newEmail)){
+                return true;
+            }
+        }
+        return false;
     }
 }
