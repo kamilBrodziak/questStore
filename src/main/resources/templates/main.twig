@@ -17,10 +17,30 @@
 <div id="container">
     <main>
         <article>
-            <section class="note">Actual</section>
-            <section class="note">...</section>
-            <section class="note">TOP 5</section>
-
+            <section class="note">
+                <h2>News</h2>
+                <ul>
+                    {% for item in news %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section class="note">
+                <h2>Last Achievements</h2>
+                <ul>
+                    {% for item in last_achieved %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section class="note">
+                <h2>Top 5</h2>
+                <ul>
+                    {% for item in top_five %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
             <div style="clear: both;"></div>
         </article>
     </main>

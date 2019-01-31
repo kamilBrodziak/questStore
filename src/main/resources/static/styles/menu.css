@@ -9,12 +9,22 @@
 	border-radius: 7%;
 	text-align: center;
 	color: black;
-	font-size: 32px;
+	font-size: 24px;
 	font-weight: 700;
 	/*------------------------*/
-	line-height: 400%;
+	line-height: 100%;
 	/*------------------------*/
 }
+.note h2
+{
+	font-size: 52px;
+}
+
+.note li
+{
+	margin-bottom: 20px;
+}
+
 article
 {
 	margin-left: auto;
