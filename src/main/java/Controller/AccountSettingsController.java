@@ -57,16 +57,14 @@ public class AccountSettingsController implements HttpHandler {
             }catch(SQLException e){
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
             }
-            List<String> nameList = Arrays.asList("email", "password");
+            Map<String, Object> map = new HashMap<>();
+            map.put("email", student.getEmail());
+            map.put("password", login.getPassword());
 
-            List<String> gettersList = Arrays.asList(student.getEmail(), login.getPassword());
-            response = renderTemplate(nameList, gettersList, "accountSettings.twig");
-
+            response = twigLoader.loadTemplate(httpExchange, "accountSettings", map);
         }
 
         if(method.equals("POST")){
-
-
             Map inputs = FormParser.parseFormData(httpExchange);
 
             String email = String.valueOf(inputs.get("email"));
@@ -106,16 +104,6 @@ public class AccountSettingsController implements HttpHandler {
         String cookieStr = httpExchange.getRequestHeaders().getFirst("Cookie");
         List<HttpCookie> cookies = cookieHelper.parseCookies(cookieStr);
         return cookieHelper.findCookieByName("sessionId", cookies);
-    }
-
-    private String renderTemplate(List<String> nameList, List<String> gettersList, String templateName){
-        JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + templateName);
-        JtwigModel model = JtwigModel.newModel();
-
-        for(int i=0; i<nameList.size(); i++){
-            model.with(nameList.get(i), gettersList.get(i));
-        }
-        return template.render(model);
     }
 
     private boolean isPasswordCorrectAndEmailNotExistsInDb(String email, String oldPassword, String newPassword, String confirmPassword) throws SQLException {
