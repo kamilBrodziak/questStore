@@ -17,6 +17,7 @@ public class Application {
         server.createContext("/contact", new ContactController());
         server.createContext("/main", new MainController());
         server.createContext("/student/quests", new QuestController());
+        server.createContext("/student/questManager", new QuestManager());
 
         server.setExecutor(null); // creates a default executor
 
