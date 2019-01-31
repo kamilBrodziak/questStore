@@ -50,11 +50,11 @@
     </div>
     <nav>
         <ul id="navOptions">
-            <li><a id="main_anchor" href="../static/index.html">Main</a></li>
-            <li id="active"><a id="account_anchor" href="#">Account</a></li>
-            <li><a id="quests_anchor" href="#">Quests</a></li>
-            <li><a id="contact_anchor" href="../static/contact.html">Contact</a></li>
-            <li><a id="logout_anchor" href="../static/index.html" onclick="return logout()">Logout</a></li>
+            <li><a id="main_anchor" href="{{ main }}">Main</a></li>
+            <li><a id="account_anchor" href="{{ account }}">Account</a></li>
+            <li id="active"><a id="quests_anchor" href="{{ quests }}">Quests</a></li>
+            <li><a id="contact_anchor" href="{{ contact }}">Contact</a></li>
+            <li><a id="logout_anchor" href="../static/logout.html">Logout</a></li>
         </ul>
     </nav>
 </div>

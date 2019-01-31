@@ -74,8 +74,8 @@ function login() {
     if(validateLogin()) {
         var form = document.getElementById("loginForm");
         if(validateLogin && email === "student@cc.cc" && password === "123") {
-            setCookie("accountAnchor", "studentPanel.html", 1);
-            form.setAttribute("action", "studentPanel.html");
+            setCookie("accountAnchor", "/student/studentPanel", 1);
+            form.setAttribute("action", "/student/studentPanel");
             return true;
         } else if(validateLogin && email === "mentor@cc.cc" && password === "123") {
             setCookie("accountAnchor", "mentorMenu.html", 1);

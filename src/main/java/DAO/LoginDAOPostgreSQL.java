@@ -69,6 +69,7 @@ public class LoginDAOPostgreSQL implements LoginDAO{
     }
 
     public Login getLoginByLoginName(String login) throws SQLException{
+
         String query = "SELECT * FROM logins WHERE login = ?;";
         String[] queryAttr = {login};
 
