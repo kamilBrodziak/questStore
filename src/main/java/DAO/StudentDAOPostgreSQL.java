@@ -78,17 +78,10 @@ public class StudentDAOPostgreSQL implements StudentDAO{
     }
 
     public boolean checkIfEmailExists(String newEmail) throws SQLException {
-        String query = "SELECT email FROM students;";
-        String[] queryAttr = {};
+        String query = "SELECT COUNT(email) count FROM students WHERE email=?;";
+        String[] queryAttr = {newEmail};
         ResultSet rs = dbCon.query(query, queryAttr);
-        int i = 0;
-        while(rs.next()){
-            String existEmail = rs.getString("email");
 
-            if(existEmail.equalsIgnoreCase(newEmail)){
-                i++;
-            }
-        }
-        return i < 2;
+        return rs.getInt("count") < 2;
     }
 }

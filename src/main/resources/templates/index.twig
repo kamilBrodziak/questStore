@@ -34,15 +34,15 @@
             </div>
             <button id="registerButton">Join our team</button>
             <div id="registerCase">
-                <form action="#">
+                <form method="POST">
                     First Name*
-                    <input type="text" placeholder="John">
+                    <input type="text" name="firstName" placeholder="John">
                     Last Name*
-                    <input type="text" placeholder="Bohn">
+                    <input type="text" name="lastName" placeholder="Bohn">
                     Email*
-                    <input id="registerEmail" type="email" placeholder="example@email.com">
+                    <input id="registerEmail" name="email" type="email" placeholder="example@email.com">
                     Password*
-                    <input type="password" maxlength="32">
+                    <input type="password" name="password" maxlength="32">
                     <input type="submit" value="Register">
                 </form>
             </div>

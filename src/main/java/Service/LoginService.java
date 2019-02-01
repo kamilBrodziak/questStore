@@ -50,7 +50,7 @@ public class LoginService {
         redirectToPage(httpExchange, "index");
     }
 
-    public void loadSession(HttpExchange httpExchange) throws IOException, SQLException {
+    public void loadPanel(HttpExchange httpExchange) throws IOException, SQLException {
         if(cookieHandler.isNewSession(httpExchange)) {
             loadPage(httpExchange, "index");
         } else {

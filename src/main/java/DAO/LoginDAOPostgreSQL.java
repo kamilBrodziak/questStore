@@ -70,12 +70,12 @@ public class LoginDAOPostgreSQL implements LoginDAO{
 
     public Login getLoginByLoginName(String login) throws SQLException{
 
-        String query = "SELECT * FROM logins WHERE login = ?;";
+        String query = "SELECT * FROM logins WHERE login=?;";
         String[] queryAttr = {login};
-
         ResultSet rs = dataBaseConnector.query(query, queryAttr);
 
         if(rs.next()){
+
             return new Login(rs.getInt("id"), rs.getString("login"), rs.getString("password"));
 
         }
@@ -95,5 +95,13 @@ public class LoginDAOPostgreSQL implements LoginDAO{
             }
         }
         return false;
+    }
+
+    public boolean checkIfLoginExists(String newEmail) throws SQLException {
+        String query = "SELECT COUNT(login) count FROM logins WHERE login=?;";
+        String[] queryAttr = {newEmail};
+        ResultSet rs = dataBaseConnector.query(query, queryAttr);
+
+        return rs.getInt("count") < 2;
     }
 }
